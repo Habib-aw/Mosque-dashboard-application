@@ -1,7 +1,7 @@
 from datetime import timedelta,datetime,date
 from tkinter import Label
 import schedule
-from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont
+from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont
 from Slide import Slide
 def toStrp(st):
     return datetime.strptime(st,"%I:%M:%S %p")
@@ -12,8 +12,9 @@ class Timer:
         self.salahObj= salahObj
         self.nextSalah = None
         self.getNextSalah()
-        self.countdown = Label(root,font=(fontStyle,salahIn2Font),bg=background,fg=foreground)
+        self.countdown = Label(root,font=(fontStyle,salahIn2Font),bg=salahIn2Bg,fg=foreground)
         self.counting = True
+        self.phoneSwitch=Label(root,font=(fontStyle,phonSwitchFont),text=salahIn2SpaceBetween+"Please switch off your mobile phones",bg=salahIn2Bg,fg=foreground)
         self.otherFrame = Frames
         self.changes = changes
         self.ramadan = ramadan
@@ -42,22 +43,26 @@ class Timer:
             self.otherFrame[0].unpackFooter()
             self.otherFrame[1].setTimerOn(True)
             self.countdown.pack(ipady=salahIn2PaddingTop)
+            self.root.config(bg=salahIn2Bg)
+            self.phoneSwitch.pack()
             cDown = datetime.combine(date.min, (self.nextSalah[1]+timedelta(minutes=2)).time()) - datetime.combine(date.min, toStrp(currentTime).time())
             cDownVar = str(cDown).replace("0:0","")
             cDownVar = str(cDownVar).replace("0:","")
             if self.counting:
-                self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar+salahIn2SpaceBetween+"Please switch off your mobile phones")
+                self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar)
                 if cDownVar == "0":
                     self.countdown.config(text=str(self.nextSalah[0]) + " salah has started")
-                    self.nextSalah[1] += timedelta(minutes=4)
+                    self.nextSalah[1] += timedelta(seconds=4)
                     self.counting =False
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=2)):
             self.getNextSalah()
             self.countdown.pack_forget()
+            self.phoneSwitch.pack_forget()
             self.otherFrame[0].packFooter()
             self.otherFrame[1].setTimerOn(False)
             self.counting=True
             self.fastTimesChanged=False
+            self.root.config(bg=background)
         else:
             if not self.fastTimesChanged:
                 for i in range(len(self.changes)):
