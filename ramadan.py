@@ -22,7 +22,7 @@ class Ramadan:
         # Holds reference to other objects 
         self.slideshow = slideshow
         self.root = root
-        self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=1)
+        self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=10)
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
         self.slideshow.addAll([self.ramadanMessage,self.fastTimesSlide])
     def setFastTimes(self):

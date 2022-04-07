@@ -12,9 +12,9 @@ class Timer:
         self.salahObj= salahObj
         self.nextSalah = None
         self.getNextSalah()
-        self.countdown = Label(root,font=(fontStyle,salahIn2Font),bg=salahIn2Bg,fg=foreground)
+        self.countdown = Label(root,font=(fontStyle,salahIn2Font,"bold"),bg=salahIn2Bg,fg=foreground)
         self.counting = True
-        self.phoneSwitch=Label(root,font=(fontStyle,phonSwitchFont),text=salahIn2SpaceBetween+"Please switch off your mobile phones",bg=salahIn2Bg,fg=foreground)
+        self.phoneSwitch=Label(root,font=(fontStyle,phonSwitchFont,"bold"),text=salahIn2SpaceBetween+"Please switch off your mobile phones",bg=salahIn2Bg,fg=foreground)
         self.otherFrame = Frames
         self.changes = changes
         self.ramadan = ramadan
@@ -51,13 +51,14 @@ class Timer:
             if self.counting:
                 self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar)
                 if cDownVar == "0":
+                    self.phoneSwitch.pack_forget()
                     self.countdown.config(text=str(self.nextSalah[0]) + " salah has started")
-                    self.nextSalah[1] += timedelta(seconds=4)
+                    self.countdown.pack(ipady=500)
+                    self.nextSalah[1] += timedelta(minutes=4)
                     self.counting =False
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=2)):
             self.getNextSalah()
             self.countdown.pack_forget()
-            self.phoneSwitch.pack_forget()
             self.otherFrame[0].packFooter()
             self.otherFrame[1].setTimerOn(False)
             self.counting=True

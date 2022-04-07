@@ -42,7 +42,7 @@ logo_pic = baitulMamurLogo.resize((BMA_logoWidth,BMA_logoLength),Image.ANTIALIAS
 new_logo = ImageTk.PhotoImage(logo_pic)
 Label(salahContinerframe,image=new_logo).place(relx=BMA_logoPositioningRelx,rely=BMA_logoPositioningRely,anchor='center')
 
-s1 = Slide(root,content="",frame=salahContinerframe,time=2)
+s1 = Slide(root,content="",frame=salahContinerframe,time=10)
 s2 = Slide(root,title="Donations",content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",contentFont=60)
 s1.packSlide()
 slideshow.addAll([s1,s2])	

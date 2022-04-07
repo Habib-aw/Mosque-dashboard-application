@@ -25,13 +25,13 @@ dateFont =60
 #-------------------------------SalahTimer class-------------------------------
 salahIn2Font = 65
 announcementContentFont = 49
-salahIn2PaddingTop=50
+salahIn2PaddingTop=300
 salahIn2SpaceBetween=""
 salahIn2Bg= 'black'
-salahIn2Font = 85
+salahIn2Font = 100
 salahIn2SwitchFont = 60
 salahIn2Bg= 'black'
-phonSwitchFont = 60
+phonSwitchFont = 75
 # -------------------------------Run class-------------------------------
 JummahTimes = "Jummah\n1:30 | 1:50"
 x= -0.08
