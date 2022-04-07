@@ -1,0 +1,86 @@
+from datetime import timedelta,datetime,date
+from tkinter import Label
+import schedule
+from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont
+from Slide import Slide
+def toStrp(st):
+    return datetime.strptime(st,"%I:%M:%S %p")
+
+class Timer:
+    def __init__(self,root,salahObj,Frames,changes,announcements,salahLabels,ramadan) -> None:
+        self.root = root
+        self.salahObj= salahObj
+        self.nextSalah = None
+        self.getNextSalah()
+        self.countdown = Label(root,font=(fontStyle,salahIn2Font),bg=background,fg=foreground)
+        self.counting = True
+        self.otherFrame = Frames
+        self.changes = changes
+        self.ramadan = ramadan
+        self.announcements = announcements
+        self.salahLabels = salahLabels
+        self.fastTimesChanged = False
+        if announcements !=[]:
+            self.sa = Slide(self.root,title="Announcements",content="",contentFont=announcementContentFont,fg="white",bg="red",paddingCtop=0)
+            self.otherFrame[1].add(self.sa)
+        self.setAnnouncements()
+        schedule.every(0.2).seconds.do(self.countingDown)
+    def getNextSalah(self):
+        arr = self.salahObj
+        currentTime = toStrp(datetime.now().strftime("%I:%M:%S %p"))
+        nextSalah = ""
+        for j in range(len(arr)):
+            if currentTime<arr[j][1]:
+                nextSalah=arr[j]
+                break
+        if not nextSalah:
+            nextSalah=arr[0]
+        self.nextSalah=nextSalah
+    def countingDown(self):
+        currentTime = datetime.now().strftime("%I:%M:%S %p")
+        if self.nextSalah[1] <=toStrp(currentTime) and toStrp(currentTime)<=(self.nextSalah[1]+timedelta(minutes=2)):
+            self.otherFrame[0].unpackFooter()
+            self.otherFrame[1].setTimerOn(True)
+            self.countdown.pack(ipady=salahIn2PaddingTop)
+            cDown = datetime.combine(date.min, (self.nextSalah[1]+timedelta(minutes=2)).time()) - datetime.combine(date.min, toStrp(currentTime).time())
+            cDownVar = str(cDown).replace("0:0","")
+            cDownVar = str(cDownVar).replace("0:","")
+            if self.counting:
+                self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar+salahIn2SpaceBetween+"Please switch off your mobile phones")
+                if cDownVar == "0":
+                    self.countdown.config(text=str(self.nextSalah[0]) + " salah has started")
+                    self.nextSalah[1] += timedelta(minutes=4)
+                    self.counting =False
+        elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=2)):
+            self.getNextSalah()
+            self.countdown.pack_forget()
+            self.otherFrame[0].packFooter()
+            self.otherFrame[1].setTimerOn(False)
+            self.counting=True
+            self.fastTimesChanged=False
+        else:
+            if not self.fastTimesChanged:
+                for i in range(len(self.changes)):
+                    if toStrp(currentTime) > self.changes[i][0]:
+                        self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
+                        if self.changes[i][2] == 0: 
+                            if self.ramadan.isRamadan():
+                                self.ramadan.setSuhoor()
+                                continue
+                        elif self.changes[i][2] == 3:
+                            if self.ramadan.isRamadan():
+                                self.ramadan.setIftaar()
+                                self.ramadan.changeDailyMessage()
+                            continue
+                        self.setAnnouncements(self.changes[i][2])
+                self.fastTimesChanged= True
+    def setAnnouncements(self,whichSalah=-1):
+        salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
+        if self.announcements != []:
+            announcementscontent = "Insha'Allah\n"
+            for i in range(len(self.announcements)):
+                if whichSalah == self.announcements[i][0]:
+                    announcementscontent+=salahNames[self.announcements[i][0]]+" is now at "+self.announcements[i][1]+"\n"
+                else:
+                    announcementscontent+=salahNames[self.announcements[i][0]]+" salah will be changing to "+self.announcements[i][1]+" tommorow\n"
+            self.sa.content.config(text=announcementscontent)
