@@ -17,7 +17,7 @@ class Ramadan:
         self.nextDayFasts = [None for _ in range(len(self.RamadanTimes)-1)];self.setNextDayFasts()
         self.Image= None;self.getDailyRamadanMessage()
         
-        # Holds reference to other objects
+        # Holds reference to other objects 
         self.slideshow = slideshow
         self.root = root
         self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=1)
