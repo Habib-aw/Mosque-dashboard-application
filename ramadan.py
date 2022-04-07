@@ -2,8 +2,10 @@ from Slide import Slide
 from PIL import ImageTk,Image
 from datetime import datetime
 from Settings import SuhoorIftaarPaddingTop,SuhoorIftaarSpaceBetween,SuhoorIftaarTimeFont,DailyMessageImgLength,DailyMessageImgWidth
+
 def toStrpDate(st):
     return datetime.strptime(st,"%d-%b-%y")
+
 class Ramadan:
     def __init__(self,slideshow,root) -> None:
         self.filename = "ramadan.txt"
