@@ -5,27 +5,31 @@ foreground = 'white'#'#95DBE5'
 #-------------------------------SalahContainer class-------------------------------
 salahContainerFont = 55
 salahTitles = 55
-salahContainerFrameW = 262
-salahContainerFrameH =285
-salahContainerCanvasW=260
-salahContainerCanvasH=283
-salahContainerCircleRadius = 110
-circleXpos = 120
-circleYpos = 130
+salahContainerFrameW = 282
+salahContainerFrameH =275
+salahContainerCanvasW=202
+salahContainerCanvasH=202
+salahContainerCircleRadius = 96
+circleXpos = 100
+circleYpos = 100
 salahTitlesYpos = 0.1 
 salahTitlesXpos =0.5
 canvasXpos=0.5
 canvasYpos=0.65
 salahTimeXpos=0.5
 salahTimeYpos =0.5
+
 #-------------------------------Footer class-------------------------------
-clockFont = 50
-dateFont =40
+clockFont = 80
+dateFont =60
 #-------------------------------SalahTimer class-------------------------------
 salahIn2Font = 65
 announcementContentFont = 49
 salahIn2PaddingTop=500
 salahIn2SpaceBetween="\n\n"
+salahIn2Bg= 'black'
+salahIn2Font = 85
+salahIn2SwitchFont = 60
 # -------------------------------Run class-------------------------------
 JummahTimes = "Jummah\n1:30 | 1:50"
 x= -0.08
@@ -40,8 +44,8 @@ BMA_logoPositioningRelx = 0.5
 BMA_logoPositioningRely = 0.8
 
 # -------------------------------Ramadan class-------------------------------
-DailyMessageImgWidth = 1200
-DailyMessageImgLength = 640
-SuhoorIftaarTimeFont = 75
+DailyMessageImgWidth = 1700
+DailyMessageImgLength = 770
+SuhoorIftaarTimeFont = 120
 SuhoorIftaarPaddingTop =25
-SuhoorIftaarSpaceBetween="\n\n\n"
+SuhoorIftaarSpaceBetween="\n\n"

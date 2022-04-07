@@ -11,7 +11,7 @@ class Ramadan:
         self.getCorrectDate()
         self.RamadanTimes = [self.lines[i].replace("\n","").split("|") for i in range(len(self.lines))] 
         self.messages=self.RamadanTimes[0][3:]
-        self.suhoor = "Suhoor Ends: "+self.RamadanTimes[0][1]
+        self.suhoor = "\nSuhoor Ends: "+self.RamadanTimes[0][1]
         self.iftaar = "Iftaar Starts: "+self.RamadanTimes[0][2]
         self.fastTimes = self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.nextDayFasts = [None for _ in range(len(self.RamadanTimes)-1)];self.setNextDayFasts()
@@ -39,7 +39,7 @@ class Ramadan:
             self.nextDayFasts = self.RamadanTimes[1][1:]
     def setSuhoor(self):
         if self.nextDayFasts[0] !=None:
-            self.suhoor = "Suhoor Ends: "+self.nextDayFasts[0] 
+            self.suhoor = "\nSuhoor Ends: "+self.nextDayFasts[0] 
             self.setFastTimes()
     def setIftaar(self):
         if self.nextDayFasts[1] !=None:
