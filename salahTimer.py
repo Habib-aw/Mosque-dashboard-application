@@ -32,6 +32,8 @@ class Timer:
         nextSalah = ""
         for j in range(len(arr)):
             if currentTime<arr[j][1]:
+                if datetime.now().strftime("%A") == "Friday" and arr[j][0] == "Zuhr":
+                    continue
                 nextSalah=arr[j]
                 break
         if not nextSalah:
