@@ -67,6 +67,7 @@ class Timer:
             self.fastTimesChanged=False
             self.root.config(bg=background)
         else:
+            self.phoneSwitch.pack_forget()
             if not self.fastTimesChanged:
                 for i in range(len(self.changes)):
                     if toStrp(currentTime) > self.changes[i][0]:
