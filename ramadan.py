@@ -24,7 +24,7 @@ class Ramadan:
         self.root = root
         self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=10)
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
-        self.slideshow.addAll([self.ramadanMessage,self.fastTimesSlide])
+        self.slideshow.addAll([self.fastTimesSlide])#self.ramadanMessage,
     def setFastTimes(self):
         self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.fastTimesSlide.content.config(text=self.fastTimes)

@@ -60,6 +60,7 @@ class Timer:
                     self.counting =False
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=2)):
             self.getNextSalah()
+            self.phoneSwitch.pack_forget()
             self.countdown.pack_forget()
             self.otherFrame[0].packFooter()
             self.otherFrame[1].setTimerOn(False)
