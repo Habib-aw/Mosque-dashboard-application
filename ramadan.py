@@ -18,14 +18,14 @@ class Ramadan:
         self.fastTimes = self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.nextDayFasts = [None for _ in range(len(self.RamadanTimes)-1)];self.setNextDayFasts()
         self.Image= None;self.getDailyRamadanMessage()
-        self.imageExists = True
         # Holds reference to other objects 
         self.slideshow = slideshow
         self.root = root
         self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=10)
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
         self.slideshow.add(self.fastTimesSlide)
-        if self.imageExists:
+        
+        if False:
             self.slideshow.add(self.ramadanMessage)
     def setFastTimes(self):
         self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
