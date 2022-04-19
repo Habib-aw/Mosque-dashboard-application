@@ -18,24 +18,35 @@ class Ramadan:
         self.fastTimes = self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.nextDayFasts = [None for _ in range(len(self.RamadanTimes)-1)];self.setNextDayFasts()
         self.Image= None;self.getDailyRamadanMessage()
-        
+        self.imageExists = True
         # Holds reference to other objects 
         self.slideshow = slideshow
         self.root = root
         self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=10)
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
-        self.slideshow.addAll([self.fastTimesSlide])#self.ramadanMessage,
+        self.slideshow.add(self.fastTimesSlide)
+        if self.imageExists:
+            self.slideshow.add(self.ramadanMessage)
     def setFastTimes(self):
         self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.fastTimesSlide.content.config(text=self.fastTimes)
     def getDailyRamadanMessage(self):
         if self.isRamadan():
             if len(self.messages) == 1:
-                self.Image = ImageTk.PhotoImage(Image.open("images/"+self.messages[0]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+                try:
+                    self.Image = ImageTk.PhotoImage(Image.open("images/"+self.messages[0]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+                except:
+                    self.Image = ImageTk.PhotoImage(Image.open("images/noImgFound.png").resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+
     def changeDailyMessage(self):
-        self.newImage = ImageTk.PhotoImage(Image.open("images/"+self.nextDayFasts[2]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
-        if self.nextDayFasts[2] !=None:
-            self.ramadanMessage.imageLabel.config(image=self.newImage)
+        try:
+            self.newImage = ImageTk.PhotoImage(Image.open("images/"+self.nextDayFasts[2]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+            if self.nextDayFasts[2] !=None:
+                self.ramadanMessage.imageLabel.config(image=self.newImage)
+        except:
+            self.newImage = ImageTk.PhotoImage(Image.open("images/noImgFound.png").resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+
+
     def setNextDayFasts(self):
         if len(self.RamadanTimes) > 1:
             self.nextDayFasts = self.RamadanTimes[1][1:]
