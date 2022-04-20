@@ -24,7 +24,7 @@ clockFont = 80
 dateFont =60
 #-------------------------------SalahTimer class-------------------------------
 salahIn2Font = 65
-announcementContentFont = 49
+announcementContentFont = 64
 salahIn2PaddingTop=300
 salahIn2SpaceBetween=""
 salahIn2Bg= 'black'
