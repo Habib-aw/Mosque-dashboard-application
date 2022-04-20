@@ -22,7 +22,7 @@ class Timer:
         self.salahLabels = salahLabels
         self.fastTimesChanged = False
         if announcements !=[]:
-            self.sa = Slide(self.root,title="Announcements",content="",contentFont=announcementContentFont,fg="white",bg="red",paddingCtop=0)
+            self.sa = Slide(self.root,title="Announcements",content="",contentFont=announcementContentFont,fg="white",bg="red",paddingCtop=0,announce=True)
             self.otherFrame[1].add(self.sa)
         self.setAnnouncements()
         schedule.every(0.2).seconds.do(self.countingDown)

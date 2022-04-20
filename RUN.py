@@ -25,7 +25,7 @@ salahInfo= SalahInfo() ### updates times and receives time from file ###
 tmrroData = salahInfo.checkAnnouncemennts()
 changes = tmrroData[1]
 announcements = tmrroData[0]
-slideshow =Slideshow()
+slideshow =Slideshow(root)
 f =Footer(root)
 
 salahContinerframe =Frame(root,bg=background,height=root.winfo_screenheight()-150,width=root.winfo_screenwidth())

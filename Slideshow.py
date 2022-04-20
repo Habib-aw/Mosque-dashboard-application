@@ -1,5 +1,5 @@
 import schedule
-
+from Settings import background
 class Node:
     def __init__(self, val):
         self.val = val
@@ -7,7 +7,8 @@ class Node:
         self.next = None
 
 class Slideshow:
-    def __init__(self):
+    def __init__(self,root):
+        self.root = root
         self.head = None
         self.tail = None
         self.ptr = self.head
@@ -53,6 +54,10 @@ class Slideshow:
             if self.count == self.ptr.prev.val.time:
                 self.ptr.prev.val.forgetP()
                 self.ptr.val.packSlide()
+                if self.ptr.val.announce:
+                    self.root.config(bg='red')
+                else:
+                    self.root.config(bg=background)
                 self.ptr= self.ptr.next
             if self.count == self.max:
                 self.count = 0

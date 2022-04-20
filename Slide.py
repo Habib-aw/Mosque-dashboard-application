@@ -2,7 +2,7 @@ from datetime import datetime,timedelta
 from tkinter import Frame,Label
 from Settings import background, foreground
 class Slide:
-	def __init__(self,root, content,contentFont=35,title=None,titleFont=55,whatTime=None,time=7,howLong=5,frame=None,paddingCtop=10,fg=foreground,bg=background,image=None):
+	def __init__(self,root, content,contentFont=35,title=None,titleFont=55,whatTime=None,time=7,howLong=5,frame=None,paddingCtop=10,fg=foreground,bg=background,image=None,announce=False):
 		if frame !=None:
 			self.frame = frame
 		else:
@@ -12,6 +12,7 @@ class Slide:
 		else:
 			self.time = datetime.strptime(whatTime,"%I:%M %p")
 			self.howLong = timedelta(minutes=howLong)
+		self.announce = announce
 	def packSlide(self):
 		self.frame.pack()
 	def forgetP(self):
