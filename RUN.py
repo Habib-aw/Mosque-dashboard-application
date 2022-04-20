@@ -30,11 +30,11 @@ f =Footer(root)
 
 salahContinerframe =Frame(root,bg=background,height=root.winfo_screenheight()-150,width=root.winfo_screenwidth())
 Label(salahContinerframe,text=JummahTimes,font=(fontStyle,salahTitles),bg=background,fg=foreground).place(relx=0.5,rely=0.5,anchor='center')
-fajr = SalahContainer(salahContinerframe,"Fajr",salahInfo.get(0),xpos=(x+0.15),ypos=y+0.70)
+fajr = SalahContainer(salahContinerframe,"Fajr",salahInfo.get(0),xpos=(x+0.13),ypos=y+0.70)
 zuhr = SalahContainer(salahContinerframe,"Zuhr",salahInfo.get(1),xpos=x+0.35-x1,ypos=y+0.5+y1)
 asr = SalahContainer(salahContinerframe,"Asr",salahInfo.get(2),xpos=x+0.5,ypos=y+0.25)
 maghrib = SalahContainer(salahContinerframe,"Maghrib",salahInfo.get(3),xpos=x+0.65+x1,ypos=y+0.5+y1)
-isha = SalahContainer(salahContinerframe,"Isha",salahInfo.get(4),xpos=(x+0.85),ypos=y+0.70)
+isha = SalahContainer(salahContinerframe,"Isha",salahInfo.get(4),xpos=(x+0.87),ypos=y+0.70)
 salahLabels = [fajr,zuhr,asr,maghrib,isha]
 
 baitulMamurLogo = Image.open("logo.png")
