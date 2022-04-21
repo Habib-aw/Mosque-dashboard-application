@@ -25,7 +25,7 @@ class Ramadan:
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
         self.slideshow.add(self.fastTimesSlide)
         
-        if False:
+        if True:
             self.slideshow.add(self.ramadanMessage)
     def setFastTimes(self):
         self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
