@@ -3,6 +3,8 @@ from tkinter import Label
 import schedule
 from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont
 from Slide import Slide
+from audioplayer import AudioPlayer
+
 def toStrp(st):
     return datetime.strptime(st,"%I:%M:%S %p")
 
@@ -56,6 +58,7 @@ class Timer:
                     self.phoneSwitch.pack_forget()
                     self.countdown.config(text=str(self.nextSalah[0]) + " salah has started")
                     self.countdown.pack(ipady=500)
+                    AudioPlayer("/sounds/start.mp3").play(block=True)
                     self.nextSalah[1] += timedelta(minutes=4)
                     self.counting =False
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=2)):
