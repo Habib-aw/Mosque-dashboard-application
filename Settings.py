@@ -1,23 +1,24 @@
 #-------------------------------All-------------------------------
 fontStyle =  "Arial"
-background = 'green'#'#078282'
-foreground = 'white'#'#95DBE5'
+background = '#00008B'
+foreground = 'white'
 #-------------------------------SalahContainer class-------------------------------
-salahContainerFont = 70
+salahContainerFont = 93
 salahTitles = 55
-salahContainerFrameW = 332
-salahContainerFrameH =325
-salahContainerCanvasW=252
-salahContainerCanvasH=252
-salahContainerCircleRadius = 120
-circleXpos = 120
-circleYpos = 120
+c= 125
+salahContainerFrameW = 262+c
+salahContainerFrameH =324+c
+salahContainerCanvasW=262+c
+salahContainerCanvasH=272+c
+salahContainerCircleRadius = 175
+circleXpos = 190
+circleYpos = 176
 salahTitlesYpos = 0.1 
 salahTitlesXpos =0.5
 canvasXpos=0.5
 canvasYpos=0.65
 salahTimeXpos=0.5
-salahTimeYpos =0.5
+salahTimeYpos =0.45
 
 #-------------------------------Footer class-------------------------------
 clockFont = 80
@@ -33,17 +34,24 @@ salahIn2SwitchFont = 60
 salahIn2Bg= 'black'
 phonSwitchFont = 75
 # -------------------------------Run class-------------------------------
-JummahTimes = "Jummah\n1:30 | 1:50"
-x= -0.08
+l = -0.028
+JummahTimes = "1:30 | 1:50"
+jummahXpos=0.5
+jummahYpos=0.9+l
+
+jummahTitleXpos=0.5
+jummahTitleYpos=0.77+l
+x= -0.1
 y=-0.24
 x1=0
 y1=-0.07
-x1=0.06
+x1=0.052
+x2=0.004
 
 BMA_logoWidth = 400
 BMA_logoLength = 140
 BMA_logoPositioningRelx = 0.5
-BMA_logoPositioningRely = 0.8
+BMA_logoPositioningRely = 0.64+l
 
 # -------------------------------Ramadan class-------------------------------
 DailyMessageImgWidth = 1700
