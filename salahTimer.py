@@ -1,7 +1,7 @@
 from datetime import timedelta,datetime,date
 from tkinter import Label
 import schedule
-from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont
+from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont,minsBeforeSalah
 from Slide import Slide
 from audioplayer import AudioPlayer
 
@@ -43,13 +43,13 @@ class Timer:
         self.nextSalah=nextSalah
     def countingDown(self):
         currentTime = datetime.now().strftime("%I:%M:%S %p")
-        if self.nextSalah[1] <=toStrp(currentTime) and toStrp(currentTime)<=(self.nextSalah[1]+timedelta(minutes=2)):
+        if self.nextSalah[1] <=toStrp(currentTime) and toStrp(currentTime)<=(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
             self.otherFrame[0].unpackFooter()
             self.otherFrame[1].setTimerOn(True)
             self.countdown.pack(ipady=salahIn2PaddingTop)
             self.root.config(bg=salahIn2Bg)
             self.phoneSwitch.pack()
-            cDown = datetime.combine(date.min, (self.nextSalah[1]+timedelta(minutes=2)).time()) - datetime.combine(date.min, toStrp(currentTime).time())
+            cDown = datetime.combine(date.min, (self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)).time()) - datetime.combine(date.min, toStrp(currentTime).time())
             cDownVar = str(cDown).replace("0:0","")
             cDownVar = str(cDownVar).replace("0:","")
             if self.counting:
@@ -61,7 +61,7 @@ class Timer:
                     AudioPlayer("sounds/start.mp3").play(block=True)
                     self.nextSalah[1] += timedelta(minutes=4)
                     self.counting =False
-        elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=2)):
+        elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
             self.getNextSalah()
             self.phoneSwitch.pack_forget()
             self.countdown.pack_forget()
