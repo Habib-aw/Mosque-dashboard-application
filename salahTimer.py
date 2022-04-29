@@ -22,7 +22,7 @@ class Timer:
         self.ramadan = ramadan
         self.announcements = announcements
         self.salahLabels = salahLabels
-        self.fastTimesChanged = False
+        self.timesChanged = False
         if announcements !=[]:
             self.sa = Slide(self.root,title="Announcements",content="",contentFont=announcementContentFont,fg="white",bg="red",paddingCtop=0,announce=True)
             self.otherFrame[1].add(self.sa)
@@ -39,7 +39,7 @@ class Timer:
                 nextSalah=arr[j]
                 break
         if not nextSalah:
-            nextSalah=arr[0]
+            nextSalah=["Waiting to reboot\n\n\n\n\n\n\n\n\n",toStrp("11:59:00 PM")]
         self.nextSalah=nextSalah
     def countingDown(self):
         currentTime = datetime.now().strftime("%I:%M:%S %p")
@@ -68,11 +68,11 @@ class Timer:
             self.otherFrame[0].packFooter()
             self.otherFrame[1].setTimerOn(False)
             self.counting=True
-            self.fastTimesChanged=False
+            self.timesChanged=False
             self.root.config(bg=background)
         else:
             self.phoneSwitch.pack_forget()
-            if not self.fastTimesChanged:
+            if not self.timesChanged:
                 for i in range(len(self.changes)):
                     if toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
@@ -86,13 +86,13 @@ class Timer:
                                 self.ramadan.changeDailyMessage()
                             continue
                         self.setAnnouncements(self.changes[i][2])
-                self.fastTimesChanged= True
+                self.timesChanged= True
     def setAnnouncements(self,whichSalah=-1):
         salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
         if self.announcements != []:
             announcementscontent = "Insha'Allah\n"
             for i in range(len(self.announcements)):
-                if whichSalah == self.announcements[i][0]:
+                if self.announcements[i][0] <= whichSalah:
                     announcementscontent+=salahNames[self.announcements[i][0]]+" is now at "+self.announcements[i][1]+"\n"
                 else:
                     announcementscontent+=salahNames[self.announcements[i][0]]+" salah will be changing to "+self.announcements[i][1]+" tommorow\n"
