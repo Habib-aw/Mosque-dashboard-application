@@ -1,5 +1,6 @@
 from datetime import datetime,timedelta
 import re
+from Settings import minsBeforeSalah
 def toStrpDate(st):
     return datetime.strptime(st,"%d-%b-%y")
 class SalahInfo:
@@ -18,7 +19,7 @@ class SalahInfo:
 		salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
 		if len(self.lines) != 0:
 			self.salahTimes = re.findall("\d+:[0-9][0-9]", self.lines[0])
-			self.salahTimesObj = objTime(self.salahTimes,subtractMin=2)
+			self.salahTimesObj = objTime(self.salahTimes,subtractMin=minsBeforeSalah)
 			for i in range(len(self.salahTimes)):
 				self.salahTimes[i] = [salahNames[i],self.salahTimes[i]]
 				self.salahTimesObj[i] = [salahNames[i],self.salahTimesObj[i]]

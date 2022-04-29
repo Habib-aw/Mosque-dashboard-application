@@ -1,5 +1,3 @@
-27-Apr-22,Fajr 4:21,Zuhr 1:30,Asr 6:30,Maghrib 8:35,Isha 10:00
-28-Apr-22,Fajr 4:20,Zuhr 1:30,Asr 6:30,Maghrib 8:37,Isha 10:00
 29-Apr-22,Fajr 4:18,Zuhr 1:30,Asr 6:30,Maghrib 8:39,Isha 10:00
 30-Apr-22,Fajr 4:15,Zuhr 1:30,Asr 6:30,Maghrib 8:40,Isha 10:00
 01-May-22,Fajr 4:15,Zuhr 1:30,Asr 6:30,Maghrib 8:42,Isha 10:00

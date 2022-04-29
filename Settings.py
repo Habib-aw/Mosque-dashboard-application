@@ -33,6 +33,7 @@ salahIn2Font = 100
 salahIn2SwitchFont = 60
 salahIn2Bg= 'black'
 phonSwitchFont = 75
+minsBeforeSalah=1
 # -------------------------------Run class-------------------------------
 l = -0.028
 JummahTimes = "1:30 | 1:50"
