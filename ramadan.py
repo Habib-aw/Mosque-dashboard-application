@@ -21,12 +21,17 @@ class Ramadan:
         # Holds reference to other objects 
         self.slideshow = slideshow
         self.root = root
-        self.ramadanMessage = Slide(self.root,None,image=self.Image,title="Daily message",time=10)
+        DailyMessageImgWidthLocal=1500
+        DailyMessageImgLengthLocal=770
+        self.banglaImage = ImageTk.PhotoImage(Image.open("images/bangla.jpeg").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
+        self.englishImage = ImageTk.PhotoImage(Image.open("images/noImgFound.png").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
+        self.ramadanMessageE = Slide(self.root,None,image=self.englishImage,title="Daily message English")
+        self.ramadanMessageB = Slide(self.root,None,image=self.banglaImage,title="Daily message Bangla")
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
         self.slideshow.add(self.fastTimesSlide)
         
         if True:
-            self.slideshow.add(self.ramadanMessage)
+            self.slideshow.addAll([self.ramadanMessageE,self.ramadanMessageB])
     def setFastTimes(self):
         self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.fastTimesSlide.content.config(text=self.fastTimes)
