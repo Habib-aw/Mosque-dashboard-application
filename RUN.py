@@ -44,15 +44,15 @@ Label(salahContinerframe,image=new_logo).place(relx=BMA_logoPositioningRelx,rely
 
 s1 = Slide(root,content="",frame=salahContinerframe,time=10)
 s2 = Slide(root,title="Donations",content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",contentFont=60)
-s1.packSlide()
+
 s3 = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00AM\n\n2nd Jama'ah: 8:30AM\n\n3rd Jama'ah: 10:00AM",contentFont=100,bg='black')
-
+s4=Slide(root,content="\n\nWe are pleased to announce that EID-EL-FITR for this year 1443/2022 should take place on Monday May 02\n\n\n",bg="red",contentFont=75,title="")
 slideshow.addAll([s1,s2])	
-
+s4.packSlide()
 r = Ramadan(slideshow,root)
 
 t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,salahLabels,r)
-slideshow.add(s3)
+slideshow.addAll([s3,s4])
 slideshow.redoTimes()
 root.config(bg=background)
 root.attributes('-fullscreen',True)
