@@ -49,9 +49,9 @@ s3 = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00 AM\n\n2nd Jama'ah
 
 slideshow.addAll([s1,s2])	
 
-r = Ramadan(slideshow,root)
+# r = Ramadan(slideshow,root)
 
-t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,salahLabels,r)
+t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,salahLabels,None)
 slideshow.add(s3)
 slideshow.redoTimes()
 root.config(bg=background)
