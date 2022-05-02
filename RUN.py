@@ -45,7 +45,7 @@ Label(salahContinerframe,image=new_logo).place(relx=BMA_logoPositioningRelx,rely
 s1 = Slide(root,content="",frame=salahContinerframe,time=10)
 s2 = Slide(root,title="Donations",content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",contentFont=60)
 s1.packSlide()
-s3 = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00 AM\n\n2nd Jama'ah: 8:30 AM\n\n3rd Jama'ah: 10:00 AM",contentFont=100,bg='black')
+# s3 = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00 AM\n\n2nd Jama'ah: 8:30 AM\n\n3rd Jama'ah: 10:00 AM",contentFont=100,bg='black')
 
 slideshow.addAll([s1,s2])	
 
