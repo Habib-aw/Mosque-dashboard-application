@@ -52,7 +52,6 @@ slideshow.addAll([s1,s2])
 # r = Ramadan(slideshow,root)
 
 t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,salahLabels,None)
-slideshow.add(s3)
 slideshow.redoTimes()
 root.config(bg=background)
 root.attributes('-fullscreen',True)
