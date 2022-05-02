@@ -56,7 +56,7 @@ class Timer:
                 self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar)
                 if cDownVar == "0":
                     self.phoneSwitch.pack_forget()
-                    self.countdown.config(text=str(self.nextSalah[0]) + " salah has started")
+                    self.countdown.config(text="Please straighten the lines\nand\nfill in the gaps")
                     self.countdown.pack(ipady=500)
                     AudioPlayer("sounds/start.mp3").play(block=True)
                     self.nextSalah[1] += timedelta(minutes=4)
