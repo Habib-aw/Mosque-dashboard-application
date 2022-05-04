@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # Python
 from tkinter import Tk,Label
-from ramadan import Ramadan
+from ramadan import Ramadan,PostRamadan
 from PIL import ImageTk,Image
 # Classes
 from SalahContainer import *
@@ -10,7 +10,7 @@ from SalahInfo import *
 # from Bot import *
 from Footer import *
 from Slideshow import *
-
+from PIL import ImageTk,Image
 from salahTimer import Timer
 # Other
 from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA_logoLength,BMA_logoWidth,BMA_logoPositioningRelx,BMA_logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont
@@ -46,9 +46,8 @@ s1 = Slide(root,content="",frame=salahContinerframe,time=10)
 s2 = Slide(root,title="Donations",content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",contentFont=60)
 s1.packSlide()
 # s3 = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00 AM\n\n2nd Jama'ah: 8:30 AM\n\n3rd Jama'ah: 10:00 AM",contentFont=100,bg='black')
-
 slideshow.addAll([s1,s2])	
-
+p = PostRamadan(root,slideshow)
 # r = Ramadan(slideshow,root)
 
 t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,salahLabels,None)

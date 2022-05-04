@@ -72,6 +72,15 @@ class Ramadan:
         if self.lines == []:
             return False
         return toStrpDate(self.RamadanTimes[0][0])  <= toStrpDate(datetime.now().strftime("%d-%b-%y")) and toStrpDate(self.RamadanTimes[len(self.RamadanTimes)-1][0])>=toStrpDate(datetime.now().strftime("%d-%b-%y"))
+class PostRamadan:
+    def __init__(self,root,slideshow) -> None:
+        multB=1
+        multE=0.9
+        self.postB = ImageTk.PhotoImage(Image.open("images/post-ramadan-bengali.jpeg").resize((round(1024*multB),round(768*multB)),Image.ANTIALIAS))
+        self.postE= ImageTk.PhotoImage(Image.open("images/post-ramadan-english.jpeg").resize((round(1024*multE),round(855*multE)),Image.ANTIALIAS))
+        post_R_E = Slide(root,None,title="Ramadan Reflection English",image=self.postE)
+        post_R_B=Slide(root,None,title="Ramadan Reflection Bengali",image=self.postB)
+        slideshow.addAll([post_R_E,post_R_B])
 # # initialy for daily message
 # if len(self.messages) == 2:
 #     if len(imageIndex) == 2:
