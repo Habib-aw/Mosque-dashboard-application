@@ -78,8 +78,22 @@ class PostRamadan:
         multE=0.9
         self.postB = ImageTk.PhotoImage(Image.open("images/post-ramadan-bengali.jpeg").resize((round(1024*multB),round(768*multB)),Image.ANTIALIAS))
         self.postE= ImageTk.PhotoImage(Image.open("images/post-ramadan-english.jpeg").resize((round(1024*multE),round(855*multE)),Image.ANTIALIAS))
-        post_R_E = Slide(root,None,title="Ramadan Reflection English",image=self.postE)
-        post_R_B=Slide(root,None,title="Ramadan Reflection Bengali",image=self.postB)
+        post_R_E = Slide(root,"""1. Keep fasting on 6 days in Shawwal;
+2. Pray all salah in Jama'ah;
+3. Extra nafl salah every day.
+4. Reading and understanding Quran.
+5. Doing charitable works even at least  by smiling to others
+6. Abstaining from all haram acts
+7. Trying to remembering Allah in every single deed we do.
+8. Glorifying Allah, and being thankful to Him""",title="Let's reflect on Ramadan:",contentFont=50)
+        post_R_B=Slide(root,""" 1. শাওয়াল মাসে 6 দিন রোজা রাখা;
+ 2. জামাআতে সমস্ত সালাত আদায় করা;
+ 3. প্রতিদিন অতিরিক্ত নফল সালাহ।
+ 4. কুরআন পড়া এবং বোঝা।
+ 5. দাতব্য কাজ করা এমনকি অন্তত অন্যদের হাসি দিয়ে
+ 6. সকল হারাম কাজ থেকে বিরত থাকা
+ 7. আমাদের প্রতিটি কাজে আল্লাহকে স্মরণ করার চেষ্টা করা।
+ 8. আল্লাহর প্রশংসা করা এবং তাঁর প্রতি কৃতজ্ঞ হওয়া""",title="“আসুন রমজানের পরেও ভালো কাজ করি”",contentFont=57)
         slideshow.addAll([post_R_E,post_R_B])
 # # initialy for daily message
 # if len(self.messages) == 2:
