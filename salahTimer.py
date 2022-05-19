@@ -58,7 +58,7 @@ class Timer:
                     self.phoneSwitch.pack_forget()
                     self.countdown.config(text="Please straighten the lines\nand\nfill in the gaps")
                     self.countdown.pack(ipady=500)
-                    AudioPlayer("sounds/start.mp3").play(block=True)
+                    AudioPlayer("sounds/plane.mp3").play(block=True)
                     self.nextSalah[1] += timedelta(minutes=4)
                     self.counting =False
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
