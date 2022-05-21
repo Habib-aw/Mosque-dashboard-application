@@ -5,9 +5,8 @@ import schedule
 from Settings import clockFont,dateFont, fontStyle,background,foreground
 import os
 class Footer:
-    def __init__(self,root,slideshow):
+    def __init__(self,root):
         dates = getDates()
-        self.r=root
         self.frame = Frame(root,width=root.winfo_screenwidth(),bg=foreground)
         self.frame1 = Frame(self.frame,width=root.winfo_screenwidth(),bg=foreground)
         self.frame2 = Frame(self.frame,width=root.winfo_screenwidth(),bg=background)
@@ -18,24 +17,12 @@ class Footer:
         self.split = Label(self.frame1,text=" | ",font=(fontStyle,dateFont,"bold"),bg=foreground,fg=background)
         self.packFooter()
         self.repeater()
-        self.s=slideshow
         self.check = True
     def repeater(self):
         self.time = datetime.now().strftime('%I:%M:%S %p')
         self.clock.config(text=self.time)
         if self.time == "12:00:00 AM":
             os.system("sudo reboot")
-        elif self.time == "12:42:40 PM":
-            self.s.timerOn=True
-            self.unpackFooter()
-            if self.check:
-                background1="#019900"
-                foreground1="white"
-                self.check=False
-                self.r.config(bg=background1)
-                Label(self.r,bg=background1,fg=foreground1,font=(fontStyle,156,"bold","underline"),text="Monsur Ali's Nikah").pack()
-                Label(self.r,bg=background1,fg=foreground1,font=(fontStyle,80,"bold"),text="\nPlease remain patient and respect those who may be still praying.\nJazakumullahu Khairan",wraplength=1600).pack()
-                Label(self.r,bg=background1,fg=foreground1,font=(fontStyle,85,"bold"),text="And We created you in pairs. [78:8]").pack(side="bottom")
         schedule.run_pending()
         self.clock.after(200,self.repeater)
     def updateDate(self):
