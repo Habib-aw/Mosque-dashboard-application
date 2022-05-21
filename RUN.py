@@ -26,7 +26,7 @@ tmrroData = salahInfo.checkAnnouncemennts()
 changes = tmrroData[1]
 announcements = tmrroData[0]
 slideshow =Slideshow(root)
-f =Footer(root)
+f =Footer(root,slideshow)
 
 salahContinerframe =Frame(root,bg=background,height=root.winfo_screenheight()-150,width=root.winfo_screenwidth())
 fajr = SalahContainer(salahContinerframe,"Fajr",salahInfo.get(0),xpos=(x+0.1)-x2,ypos=y+0.70)
