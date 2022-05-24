@@ -4,6 +4,24 @@ from tkinter import Frame,Label
 import schedule
 from Settings import clockFont,dateFont, fontStyle,background,foreground
 import os
+import subprocess
+
+def connectedToInternet():
+    import requests
+    url = "https://www.google.com/"
+    try:
+        requests.get(url, timeout=10)
+        return True
+    except (requests.ConnectionError, requests.Timeout):
+        return False
+
+
+def gitPull():
+    if connectedToInternet():
+        cmd = [ 'git', 'pull']
+        output = subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
+        if "Already up-to-date." in str(output):
+            print("nice")
 class Footer:
     def __init__(self,root):
         dates = getDates()
