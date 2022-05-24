@@ -9,6 +9,8 @@ def toStrp(st):
     return datetime.strptime(st,"%I:%M:%S %p")
 def play():
     AudioPlayer("sounds/SalahNoise.mp3").play(block=True)
+def playIsha():
+    AudioPlayer("sounds/Isha-10-45.mp3").play(block=True)
 class Timer:
     def __init__(self,root,salahObj,Frames,changes,announcements,timesChanges,salahLabels,ramadan) -> None:
         self.root = root
@@ -58,7 +60,7 @@ class Timer:
             cDownVar = str(cDownVar).replace("0:","")
             if self.counting:
                 self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar)
-                if cDownVar == "1":
+                if cDownVar == "2":
                     if not self.threadStarted:
                         Thread(target=play).start()
                         self.threadStarted=True
@@ -66,12 +68,13 @@ class Timer:
                     self.counting =False
                     self.threadStarted = False
                     self.phoneSwitch.pack_forget()
-                    self.countdown.config(text="\nPlease straighten the lines\nand\nfill in the gaps")
+                    self.countdown.config(text="\nPlease straighten the lines\nand\nfill in the gaps\n\n")
                     self.countdown.pack()
                     # self.bengaliStart.pack()
-                    self.nextSalah[1] += timedelta(minutes=4)
+                    self.nextSalah[1] += timedelta(minutes=11)
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
             self.getNextSalah()
+            Thread(target=playIsha).start()
             self.phoneSwitch.pack_forget()
             self.bengaliStart.pack_forget()
             self.countdown.pack_forget()
