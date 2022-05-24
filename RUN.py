@@ -27,13 +27,14 @@ changes = tmrroData[1]
 announcements = tmrroData[0]
 slideshow =Slideshow(root)
 f =Footer(root)
-
+sTimes = salahInfo.startTimes
+timeChanges = salahInfo.tmrroStartTimes()
 salahContinerframe =Frame(root,bg=background,height=root.winfo_screenheight()-150,width=root.winfo_screenwidth())
-fajr = SalahContainer(salahContinerframe,"Fajr",salahInfo.get(0),xpos=(x+0.1)-x2,ypos=y+0.70)
-zuhr = SalahContainer(salahContinerframe,"Zuhr",salahInfo.get(1),xpos=x+0.35-x1,ypos=y+0.5+y1)
-asr = SalahContainer(salahContinerframe,"Asr",salahInfo.get(2),xpos=x+0.5,ypos=y+0.25)
-maghrib = SalahContainer(salahContinerframe,"Maghrib",salahInfo.get(3),xpos=x+0.65+x1,ypos=y+0.5+y1)
-isha = SalahContainer(salahContinerframe,"Isha",salahInfo.get(4),xpos=(x+0.9)+x2,ypos=y+0.70)
+fajr = SalahContainer(salahContinerframe,"Fajr",salahInfo.get(0),sTimes[0],xpos=(x+0.1)-x2,ypos=y+0.70)
+zuhr = SalahContainer(salahContinerframe,"Zuhr",salahInfo.get(1),sTimes[1],xpos=x+0.35-x1,ypos=y+0.5+y1)
+asr = SalahContainer(salahContinerframe,"Asr",salahInfo.get(2),sTimes[2],xpos=x+0.5,ypos=y+0.25)
+maghrib = SalahContainer(salahContinerframe,"Maghrib",salahInfo.get(3),sTimes[3],xpos=x+0.65+x1,ypos=y+0.5+y1)
+isha = SalahContainer(salahContinerframe,"Isha",salahInfo.get(4),sTimes[4],xpos=(x+0.9)+x2,ypos=y+0.70)
 salahLabels = [fajr,zuhr,asr,maghrib,isha]
 Label(salahContinerframe,text="Jummah",font=(fontStyle,salahTitles),bg=background,fg=foreground).place(relx=jummahTitleXpos,rely=jummahTitleYpos,anchor='center')
 Label(salahContinerframe,text=JummahTimes,font=(fontStyle,salahContainerFont),bg=background,fg=foreground).place(relx=jummahXpos,rely=jummahYpos,anchor='center')
@@ -50,7 +51,7 @@ slideshow.addAll([s1,s2])
 p = PostRamadan(root,slideshow)
 # r = Ramadan(slideshow,root)
 
-t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,salahLabels,None)
+t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,None)
 slideshow.redoTimes()
 root.config(bg=background)
 root.attributes('-fullscreen',True)

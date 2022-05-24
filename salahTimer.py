@@ -4,15 +4,17 @@ import schedule
 from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont,minsBeforeSalah
 from Slide import Slide
 from audioplayer import AudioPlayer
-
+from threading import Thread
 def toStrp(st):
     return datetime.strptime(st,"%I:%M:%S %p")
-
+def play():
+    AudioPlayer("sounds/SalahNoise.mp3").play(block=True)
 class Timer:
-    def __init__(self,root,salahObj,Frames,changes,announcements,salahLabels,ramadan) -> None:
+    def __init__(self,root,salahObj,Frames,changes,announcements,timesChanges,salahLabels,ramadan) -> None:
         self.root = root
         self.salahObj= salahObj
         self.nextSalah = None
+        self.timesChanges = timesChanges
         self.getNextSalah()
         self.countdown = Label(root,font=(fontStyle,salahIn2Font,"bold"),bg=salahIn2Bg,fg=foreground)
         self.counting = True
@@ -23,6 +25,8 @@ class Timer:
         self.announcements = announcements
         self.salahLabels = salahLabels
         self.timesChanged = False
+        self.threadStarted = False
+        self.bengaliStart = Label(root,font=(fontStyle,phonSwitchFont,"bold"),text="\n\nদয়া করে কাতার সোজা করেন",bg=salahIn2Bg,fg=foreground)
         if announcements !=[]:
             self.sa = Slide(self.root,title="Announcements",content="",contentFont=announcementContentFont,fg="white",bg="red",paddingCtop=0,announce=True)
             self.otherFrame[1].add(self.sa)
@@ -55,17 +59,21 @@ class Timer:
             if self.counting:
                 self.countdown.config(text=self.nextSalah[0]+" salah in\n"+cDownVar)
                 if cDownVar == "1":
-                    self.phoneSwitch.pack_forget()
-                    self.countdown.config(text="Please straighten the lines\nand\nfill in the gaps\n\nদয়া করে কাতার সোজা করেন")
-                    self.countdown.pack(ipady=500)
+                    if not self.threadStarted:
+                        Thread(target=play).start()
+                        self.threadStarted=True
                 if cDownVar == "0":
-                    AudioPlayer("sounds/SalahNoise.mp3").play(block=True)
                     self.counting =False
-                    self.countdown.config(text="Please straighten the lines\nand\nfill in the gaps\n\nদয়া করে কাতার সোজা করেন")
+                    self.threadStarted = False
+                    self.phoneSwitch.pack_forget()
+                    self.countdown.config(text="\nPlease straighten the lines\nand\nfill in the gaps")
+                    self.countdown.pack()
+                    # self.bengaliStart.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
             self.getNextSalah()
             self.phoneSwitch.pack_forget()
+            self.bengaliStart.pack_forget()
             self.countdown.pack_forget()
             self.otherFrame[0].packFooter()
             self.otherFrame[1].setTimerOn(False)
@@ -89,6 +97,13 @@ class Timer:
                             continue
                         self.setAnnouncements(self.changes[i][2])
                 self.timesChanged= True
+                for i in range(5):
+                        if toStrp(currentTime) > self.salahObj[i][1]:
+                            if self.salahLabels[i].endTime != None:
+                                  self.salahLabels[i].startTime.config(text=self.timesChanges[i][0])
+                                  self.salahLabels[i].endTime.config(text=self.timesChanges[i][1])
+                                  continue
+                            self.salahLabels[i].startTime.config(text=self.timesChanges[i])
     def setAnnouncements(self,whichSalah=-1):
         salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
         if self.announcements != []:
