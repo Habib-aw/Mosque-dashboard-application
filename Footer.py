@@ -24,7 +24,7 @@ def gitPull():
             pass
         elif "Error" in str(output):
             pass
-        if "Updating" in str(output):
+        elif "Updating" in str(output):
             os.system("sudo reboot")
 class Footer:
     def __init__(self,root):
