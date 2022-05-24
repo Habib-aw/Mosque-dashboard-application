@@ -21,7 +21,11 @@ def gitPull():
         cmd = [ 'git', 'pull']
         output = subprocess.Popen( cmd, stdout=subprocess.PIPE ).communicate()[0]
         if "Already up-to-date." in str(output):
-            print("nice")
+            pass
+        elif "Error" in str(output):
+            pass
+        if "Updating" in str(output):
+            os.system("sudo reboot")
 class Footer:
     def __init__(self,root):
         dates = getDates()
@@ -34,6 +38,7 @@ class Footer:
         self.hDate = Label(self.frame1,text=dates[1],font=(fontStyle,dateFont,"bold"),bg=foreground,fg=background)
         self.split = Label(self.frame1,text=" | ",font=(fontStyle,dateFont,"bold"),bg=foreground,fg=background)
         self.packFooter()
+        schedule.every(30).seconds.do(gitPull)
         self.repeater()
         self.check = True
     def repeater(self):
