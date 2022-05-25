@@ -19,8 +19,8 @@ class SalahInfo:
 				self.lines= open("times.txt", "r").readlines()
 		if len(self.startTimesLines)!=0:
 			while self.startTimesLines[0][:9] != datetime.now().strftime("%d-%b-%y"):
-				open('start-times.txt', 'w').writelines(self.self.startTimesLines[1:])
-				self.lines= open("start-times.txt", "r").readlines()
+				open('start-times.txt', 'w').writelines(self.startTimesLines[1:])
+				self.startTimesLines= open("start-times.txt", "r").readlines()
 	def getSalahs(self):
 		salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
 		if len(self.lines) != 0:

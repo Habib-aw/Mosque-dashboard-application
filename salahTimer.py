@@ -71,10 +71,10 @@ class Timer:
                     self.countdown.config(text="\nPlease straighten the lines\nand\nfill in the gaps\n\n")
                     self.countdown.pack()
                     # self.bengaliStart.pack()
-                    self.nextSalah[1] += timedelta(minutes=11)
+                    self.nextSalah[1] += timedelta(minutes=4)
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
             self.getNextSalah()
-            Thread(target=playIsha).start()
+            #Thread(target=playIsha).start()
             self.phoneSwitch.pack_forget()
             self.bengaliStart.pack_forget()
             self.countdown.pack_forget()
