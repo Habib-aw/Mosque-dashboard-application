@@ -35,10 +35,10 @@ class Footer:
         self.clock = Label(self.frame2,font=(fontStyle,clockFont,"bold"),bg=background,fg=foreground)
         self.time = datetime.now().strftime('%I:%M:%S %p')
         self.gDate = Label(self.frame1,text=dates[0],font=(fontStyle,dateFont,"bold"),bg=foreground,fg=background)
-        self.hDate = Label(self.frame1,text=dates[1],font=(fontStyle,dateFont,"bold"),bg=foreground,fg=background)
+        self.hDate = Label(self.frame1,text=dates[1],font=(fontStyle,dateFont-12,"bold"),bg=foreground,fg=background)
         self.split = Label(self.frame1,text=" | ",font=(fontStyle,dateFont,"bold"),bg=foreground,fg=background)
         self.packFooter()
-        schedule.every(30).seconds.do(gitPull)
+        # schedule.every(30).seconds.do(gitPull)
         self.repeater()
         self.check = True
     def repeater(self):
@@ -68,5 +68,5 @@ class Footer:
 def getDates():
     gregorianDate = datetime.now().strftime('%A, %d %B %Y')
     hijri = Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri()
-    hijiriDate = hijri.day,hijri.month_name(),hijri.year,hijri.notation()
+    hijiriDate = str(hijri.day)+" "+hijri.month_name()+" "+str(hijri.year)+" "+hijri.notation()
     return (gregorianDate,hijiriDate)

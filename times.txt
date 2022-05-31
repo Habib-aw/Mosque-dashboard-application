@@ -1,13 +1,3 @@
-21-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:05,Isha 10:30
-22-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:06,Isha 10:30
-23-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:07,Isha 10:30
-24-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:09,Isha 10:30
-25-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:10,Isha 10:45
-26-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:11,Isha 10:45
-27-May-22,Fajr 3:30,Zuhr 1:30,Asr 6:45,Maghrib 9:13,Isha 10:45
-28-May-22,Fajr 3:15,Zuhr 1:30,Asr 6:45,Maghrib 9:14,Isha 10:45
-29-May-22,Fajr 3:15,Zuhr 1:30,Asr 6:45,Maghrib 9:15,Isha 10:45
-30-May-22,Fajr 3:15,Zuhr 1:30,Asr 6:45,Maghrib 9:16,Isha 10:45
 31-May-22,Fajr 3:15,Zuhr 1:30,Asr 6:45,Maghrib 9:17,Isha 10:45
 01-Jun-22,Fajr 3:15,Zuhr 1:30,Asr 6:45,Maghrib 9:18,Isha 10:45
 02-Jun-22,Fajr 3:15,Zuhr 1:30,Asr 6:45,Maghrib 9:19,Isha 10:45

@@ -1,5 +1,6 @@
 import schedule
 from Settings import background
+from Slide import Slide
 class Node:
     def __init__(self, val):
         self.val = val
@@ -16,9 +17,26 @@ class Slideshow:
         self.size=0
         self.max=0
         self.timerOn = False
+        # self.setZhikrSlide()
         schedule.every(1).seconds.do(self.next)
     def setTimerOn(self,bool):
         self.timerOn=bool
+    # def setZhikrSlide(self):
+    #     englishSlide = Slide(self.root,title="English",content="some",contentFont=55,fg="white",bg="green",paddingCtop=0)
+    #     bengaliSlide = Slide(self.root,title="Bengali",content="some contet",contentFont=55,fg="white",bg="green",paddingCtop=0)
+    #     self.secondHead = Node(englishSlide)
+    #     self.secondHead.next = Node(bengaliSlide)
+    #     self.secondHead.prev=self.secondHead.next
+    #     self.secondHead.next.next = self.secondHead
+    #     self.secondHead.next.prev = self.secondHead
+        # english
+        # bengali bengali
+    def swapHeadZhikr(self,A):
+        self.secondHead = self.head
+        self.head = None
+        self.addAll(A)
+    def swapHeadNormal(self):
+        self.head = self.secondHead
     def redoTimes(self):
         count = 0
         if self.size<=1:
