@@ -13,6 +13,7 @@ def play():
 def playAnnouncement(A):
     # print(A)
     B = A[1].split(":")
+    ## CAN EITHER MERGE AUDIO FILE THEN PLAY OR PLAY SEPERATE (BUT MORE ROBOTIC)
     # print(B)
     # AudioPlayer("salam.mp3").play(block=True)
     # AudioPlayer("A[0].mp3").play(block=True)
