@@ -15,6 +15,12 @@ def playAnnouncement(A):
     B = A[1].split(":")
     ## CAN EITHER MERGE AUDIO FILE THEN PLAY OR PLAY SEPERATE (BUT MORE ROBOTIC)
     # print(B)
+    if A[0] == "Asr":
+        AudioPlayer("sounds/"+A[0]+"Temp.mp3").play(block=True)  
+        pass
+    elif A[0] == "Isha":
+        AudioPlayer("sounds/"+A[0]+"Temp.mp3").play(block=True)
+        pass
     # AudioPlayer("salam.mp3").play(block=True)
     # AudioPlayer("A[0].mp3").play(block=True)
     # AudioPlayer("nowAt.mp3").play(block=True)
@@ -25,6 +31,8 @@ def playAnnouncement(A):
 
 
     # AudioPlayer("sounds/Isha-10-45.mp3").play(block=True)
+announceMsg1 ="Insha'Allah\nFrom tomorrow "
+announceMsg2 = " salah\nwill be at"
 class Timer:
     def __init__(self,root,salahObj,Frames,changes,announcements,timesChanges,salahLabels,ramadan) -> None:
         self.salahNames = ["Fajr","Zuhr","Asr","Maghrib","Isha"]
@@ -45,7 +53,7 @@ class Timer:
         self.threadStarted = False
         self.bengaliStart = Label(root,font=(fontStyle,phonSwitchFont,"bold"),text="\n\nদয়া করে কাতার সোজা করেন",bg=salahIn2Bg,fg=foreground)
         self.announcementSet = False
-        self.announcementMsg=Label(root,fg="white",bg="red",font=("Arial",135,"bold"))
+        self.announcementMsg=Label(root,fg="white",bg="red",font=("Arial",100,"bold"))
         self.otherSalahs= Label(root,fg="White",bg="red",font=("Arial",60,"bold"))
         self.announcementVoiced= False
         self.zhikrSet = False
@@ -97,7 +105,7 @@ class Timer:
                 if self.announcements !=[] and not self.announcementSet:
                     for i in range(len(self.announcements)):
                         if self.nextSalah[0] == self.salahNames[self.announcements[i][0]]:
-                            self.announcementMsg.config(text="Insha'Allah\n"+self.nextSalah[0] + " is now at "+self.announcements[i][1])
+                            self.announcementMsg.config(text=announceMsg1+self.nextSalah[0] + announceMsg2+" "+self.announcements[i][1])
                             self.nextSalah[1]+=timedelta(minutes=11)
                             otherSalahs=""
                             for j in range(5):
@@ -166,22 +174,23 @@ class Timer:
                                   continue
                             self.salahLabels[i].startTime.config(text=self.timesChanges[i])
             elif self.announcementSet and not self.announcementVoiced:
-                A =  self.announcementMsg.cget("text").replace(" is now at","").split(" ")
+                A =  self.announcementMsg.cget("text").replace(announceMsg1,"")
+                A = A.replace(announceMsg2,"").split(" ")
                 cDown = datetime.combine(date.min, (self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)).time()) - datetime.combine(date.min, toStrp(currentTime).time())
                 self.cDownVar = str(cDown).replace("0:0","")
                 self.cDownVar = str(self.cDownVar).replace("0:","")
-                if (self.nextSalah[0] == "Zuhr" or self.nextSalah[0] == "Asr") and self.cDownVar == "1:00" and not self.announcementVoiced:
+                if (self.nextSalah[0] == "Zuhr" or self.nextSalah[0] == "Asr") and self.cDownVar == "5:30" and not self.announcementVoiced: 
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
-                elif self.nextSalah[0] == "Isha"  and self.cDownVar == "1:00" and not self.announcementVoiced:
+                elif self.nextSalah[0] == "Isha"  and self.cDownVar == "4:00" and not self.announcementVoiced:
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
                 elif self.nextSalah[0]=="Fajr" and self.cDownVar == "2:00" and not self.announcementVoiced:
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
-                elif self.nextSalah[0] == "Maghrib" and self.cDownVar == "5:00" and not self.announcementVoiced:
-                    self.announcementVoiced=True
-                    Thread(target=playAnnouncement,args=(A,)).start()
+                # elif self.nextSalah[0] == "Maghrib" and self.cDownVar == "5:00" and not self.announcementVoiced:
+                #     self.announcementVoiced=True
+                #     Thread(target=playAnnouncement,args=(A,)).start()
     def setAnnouncements(self,whichSalah=-1):
         if self.announcements != []:
             announcementscontent = "Insha'Allah\n"
