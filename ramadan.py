@@ -95,6 +95,11 @@ class PostRamadan:
  7. আমাদের প্রতিটি কাজে আল্লাহকে স্মরণ করার চেষ্টা করা।
  8. আল্লাহর প্রশংসা করা এবং তাঁর প্রতি কৃতজ্ঞ হওয়া""",title="“আসুন রমজানের পরেও ভালো কাজ করি”",contentFont=57,fg="black",bg="white",time=10)
         slideshow.addAll([post_R_E,post_R_B])
+class EidAdha:
+    def __init__(self,root,slideshow) -> None:
+        self.post = ImageTk.PhotoImage(Image.open("images/arafat-adha.png").resize((1918,870),Image.ANTIALIAS))
+        arafat = Slide(root,None,image=self.post,title="",time=10)
+        slideshow.add(arafat)
 # # initialy for daily message
 # if len(self.messages) == 2:
 #     if len(imageIndex) == 2:
