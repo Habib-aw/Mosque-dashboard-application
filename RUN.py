@@ -54,7 +54,7 @@ content="Please donate to the masjid using the charity box or card machine near 
 contentFont=60
 )
 
-a = EidAdha(root,slideshow)
+# a = EidAdha(root,slideshow)
 # p = PostRamadan(root,slideshow)
 # r = Ramadan(slideshow,root)
 # s3 = Slide(root,
