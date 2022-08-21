@@ -1,7 +1,7 @@
 #-------------------------------All-------------------------------
 fontStyle =  "Arial"
-background = '#00008B'
-foreground = 'white'
+background = '#00008B' #'#000023'
+foreground = 'white' #'#e8d0bc'
 #-------------------------------SalahContainer class-------------------------------
 salahContainerFont = 93
 salahTitles = 55
