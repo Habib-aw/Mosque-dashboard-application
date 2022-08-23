@@ -102,6 +102,13 @@ class Timer:
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
             if self.cDownVar=="9" and not self.counting:
+                if self.nextSalah[0] == "Asr" and (datetime.now().strftime('%A') !=("Sunday" or "Saturday" or "Friday")):
+                    self.nextSalah[1]+=timedelta(minutes=200)
+                    self.phoneSwitch.pack_forget()
+                    self.countdown.pack_forget()
+                    self.otherSalahs.config(text="Please leave quickly and quietly as maktab is currently ongoing\n JazakAllah khair",wraplength=1000)
+                    self.otherSalahs.pack(ipady=200)
+                    self.root.config(bg="red")
                 if self.announcements !=[] and not self.announcementSet:
                     for i in range(len(self.announcements)):
                         if self.nextSalah[0] == self.salahNames[self.announcements[i][0]]:
