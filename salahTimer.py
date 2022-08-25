@@ -102,7 +102,7 @@ class Timer:
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
             if self.cDownVar=="9" and not self.counting and not self.announcementSet:
-                if self.nextSalah[0] == "Asr" and (datetime.now().strftime('%A') !=("Sunday" or "Saturday" or "Friday")):
+                if self.nextSalah[0] == "Asr" and (datetime.now().strftime('%A')!=("Sunday" and "Saturday" and "Friday")):
                     self.nextSalah[1]+=timedelta(minutes=14)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
