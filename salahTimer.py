@@ -101,15 +101,15 @@ class Timer:
                     self.countdown.config(text="\nPlease straighten the lines\nand\nfill in the gaps\n\n")
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
-            if self.cDownVar=="9" and not self.counting:
+            if self.cDownVar=="9" and not self.counting and not self.announcementSet:
                 if self.nextSalah[0] == "Asr" and (datetime.now().strftime('%A') !=("Sunday" or "Saturday" or "Friday")):
-                    self.nextSalah[1]+=timedelta(minutes=200)
+                    self.nextSalah[1]+=timedelta(minutes=14)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
-                    self.otherSalahs.config(text="Please leave quickly and quietly as maktab is currently ongoing\n JazakAllah khair",wraplength=1000)
-                    self.otherSalahs.pack(ipady=200)
+                    self.otherSalahs.config(text="Dear Musaleen\nPlease leave as quickly and quietly as possible as maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500)
+                    self.otherSalahs.pack(ipady=230)
                     self.root.config(bg="red")
-                if self.announcements !=[] and not self.announcementSet:
+                if self.announcements !=[]:
                     for i in range(len(self.announcements)):
                         if self.nextSalah[0] == self.salahNames[self.announcements[i][0]]:
                             self.announcementMsg.config(text=announceMsg1+self.nextSalah[0] + announceMsg2+" "+self.announcements[i][1])
@@ -125,8 +125,8 @@ class Timer:
                             self.announcementMsg.pack(ipady=200)
                             self.otherSalahs.pack(side="bottom",ipady=30)
                             self.root.config(bg="red")
-                            self.announcementSet=True
                             break
+                self.announcementSet=True
                 # if not self.announcementSet and not self.zhikrSet:
                 #     print("here234")
                 #     englishSlide = Slide(self.root,title="English",content="some",contentFont=55,fg="white",bg="green",paddingCtop=0,time=5)
