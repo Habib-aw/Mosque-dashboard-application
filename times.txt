@@ -1,4 +1,4 @@
-09-Oct-22,Fajr 8:42,Zuhr 1:30,Asr 4:45,Maghrib 6:31,Isha 8:00
+09-Oct-22,Fajr 6:10,Zuhr 1:30,Asr 4:45,Maghrib 6:31,Isha 8:00
 10-Oct-22,Fajr 6:10,Zuhr 1:30,Asr 4:45,Maghrib 6:28,Isha 8:00
 11-Oct-22,Fajr 6:10,Zuhr 1:30,Asr 4:45,Maghrib 6:26,Isha 8:00
 12-Oct-22,Fajr 6:10,Zuhr 1:30,Asr 4:45,Maghrib 6:24,Isha 8:00

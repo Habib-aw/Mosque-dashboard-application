@@ -14,9 +14,9 @@ def playAnnouncement(A):
     print(A)
     B = A[1].split(":")
     print(B)
-    AudioPlayer("sounds/announcements/salah"+A[0]+".mp3").play(block=True)
-    AudioPlayer("sounds/announcements/hours"+B[0]+".mp3").play(block=True)
-    AudioPlayer("sounds/announcements/minutes"+B[1]+".mp3").play(block=True)
+    AudioPlayer("sounds/announcements/salah/"+A[0]+".mp3").play(block=True)
+    AudioPlayer("sounds/announcements/hours/"+B[0]+".mp3").play(block=True)
+    AudioPlayer("sounds/announcements/minutes/"+B[1]+".mp3").play(block=True)
 
 
 
@@ -92,11 +92,11 @@ class Timer:
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
             if self.cDownVar=="9" and not self.counting and not self.announcementSet:
-                if self.nextSalah[0] == "Asr" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"):
+                if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"):
                     self.nextSalah[1]+=timedelta(minutes=14)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
-                    self.otherSalahs.config(text="Dear Musaleen\nPlease leave as quickly and quietly as possible as maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500)
+                    self.otherSalahs.config(text="Please pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500)
                     self.otherSalahs.pack(ipady=230)
                     self.root.config(bg="red")
                 if self.announcements !=[]:
@@ -111,7 +111,7 @@ class Timer:
                                 otherSalahs+=self.salahNames[j]+": "+self.salahLabels[j].label.cget("text")+"  "
                             self.phoneSwitch.pack_forget()
                             self.countdown.pack_forget()
-                            self.otherSalahs.config(text=" "+otherSalahs)
+                            self.otherSalahs.config(text=" "+otherSalahs,font=("Arial",60,"bold"),wraplength=None)
                             self.announcementMsg.pack(ipady=200)
                             self.otherSalahs.pack(side="bottom",ipady=30)
                             self.root.config(bg="red")
