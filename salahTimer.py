@@ -11,26 +11,16 @@ def toStrp(st):
 def play():
     AudioPlayer("sounds/SalahNoise.mp3").play(block=True)
 def playAnnouncement(A):
-    # print(A)
+    print(A)
     B = A[1].split(":")
-    ## CAN EITHER MERGE AUDIO FILE THEN PLAY OR PLAY SEPERATE (BUT MORE ROBOTIC)
-    # print(B)
-    if A[0] == "Asr":
-        #AudioPlayer("sounds/"+A[0]+"Temp.mp3").play(block=True)  
-        pass
-    elif A[0] == "Isha":
-        #AudioPlayer("sounds/"+A[0]+"Temp.mp3").play(block=True)
-        pass
-    # AudioPlayer("salam.mp3").play(block=True)
-    # AudioPlayer("A[0].mp3").play(block=True)
-    # AudioPlayer("nowAt.mp3").play(block=True)
-    # AudioPlayer("B[0].mp3").play(block=True)
-    # AudioPlayer("B[1].mp3").play(block=True)
+    print(B)
+    AudioPlayer("sounds/announcements/salah"+A[0]+".mp3").play(block=True)
+    AudioPlayer("sounds/announcements/hours"+B[0]+".mp3").play(block=True)
+    AudioPlayer("sounds/announcements/minutes"+B[1]+".mp3").play(block=True)
 
 
 
 
-    # AudioPlayer("sounds/Isha-10-45.mp3").play(block=True)
 announceMsg1 ="Insha'Allah\nFrom tomorrow "
 announceMsg2 = " salah\nwill be at"
 class Timer:
