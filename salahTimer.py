@@ -96,9 +96,9 @@ class Timer:
                     self.nextSalah[1]+=timedelta(minutes=14)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
-                    self.otherSalahs.config(text="Please pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500)
+                    self.otherSalahs.config(text="Please pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
                     self.otherSalahs.pack(ipady=230)
-                    self.root.config(bg="red")
+                    self.root.config(bg="green")
                 if self.announcements !=[]:
                     for i in range(len(self.announcements)):
                         if self.nextSalah[0] == self.salahNames[self.announcements[i][0]]:
@@ -111,7 +111,7 @@ class Timer:
                                 otherSalahs+=self.salahNames[j]+": "+self.salahLabels[j].label.cget("text")+"  "
                             self.phoneSwitch.pack_forget()
                             self.countdown.pack_forget()
-                            self.otherSalahs.config(text=" "+otherSalahs,font=("Arial",60,"bold"),wraplength=None)
+                            self.otherSalahs.config(text=" "+otherSalahs,font=("Arial",60,"bold"),wraplength=None,bg="red")
                             self.announcementMsg.pack(ipady=200)
                             self.otherSalahs.pack(side="bottom",ipady=30)
                             self.root.config(bg="red")
