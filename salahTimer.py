@@ -11,12 +11,10 @@ def toStrp(st):
 def play():
     AudioPlayer("sounds/SalahNoise.mp3").play(block=True)
 def playAnnouncement(A):
-    print(A)
     B = A[1].split(":")
-    print(B)
-    AudioPlayer("sounds/announcements/salah/"+A[0]+".mp3").play(block=True)
-    AudioPlayer("sounds/announcements/hours/"+B[0]+".mp3").play(block=True)
-    AudioPlayer("sounds/announcements/minutes/"+B[1]+".mp3").play(block=True)
+    # AudioPlayer("sounds/announcements/salah/"+A[0]+".mp3").play(block=True)
+    # AudioPlayer("sounds/announcements/hours/"+B[0]+".mp3").play(block=True)
+    # AudioPlayer("sounds/announcements/minutes/"+B[1]+".mp3").play(block=True)
 
 
 
@@ -154,8 +152,8 @@ class Timer:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
                         # if self.changes[i][2] == 0: 
                             #if self.ramadan.isRamadan():
-                             #   self.ramadan.setSuhoor()
-                              #  continue
+                            #   self.ramadan.setSuhoor()
+                            #  continue
                         if self.changes[i][2] == 3:
                             #if self.ramadan.isRamadan():
                             #    self.ramadan.setIftaar()
@@ -166,9 +164,9 @@ class Timer:
                 for i in range(5):
                         if toStrp(currentTime) > self.salahObj[i][1]:
                             if self.salahLabels[i].endTime != None:
-                                  self.salahLabels[i].startTime.config(text=self.timesChanges[i][0])
-                                  self.salahLabels[i].endTime.config(text=self.timesChanges[i][1])
-                                  continue
+                                self.salahLabels[i].startTime.config(text=self.timesChanges[i][0])
+                                self.salahLabels[i].endTime.config(text=self.timesChanges[i][1])
+                                continue
                             self.salahLabels[i].startTime.config(text=self.timesChanges[i])
             elif self.announcementSet and not self.announcementVoiced:
                 A =  self.announcementMsg.cget("text").replace(announceMsg1,"")
@@ -176,13 +174,13 @@ class Timer:
                 cDown = datetime.combine(date.min, (self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)).time()) - datetime.combine(date.min, toStrp(currentTime).time())
                 self.cDownVar = str(cDown).replace("0:0","")
                 self.cDownVar = str(self.cDownVar).replace("0:","")
-                if (self.nextSalah[0] == "Zuhr" or self.nextSalah[0] == "Asr") and self.cDownVar == "5:30" and not self.announcementVoiced: 
+                if (self.nextSalah[0] == "Zuhr" or self.nextSalah[0] == "Asr") and self.cDownVar == "5:00" and not self.announcementVoiced: 
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
-                elif self.nextSalah[0] == "Isha"  and self.cDownVar == "4:00" and not self.announcementVoiced:
+                elif self.nextSalah[0] == "Isha"  and self.cDownVar == "2:00" and not self.announcementVoiced:
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
-                elif self.nextSalah[0]=="Fajr" and self.cDownVar == "2:00" and not self.announcementVoiced:
+                elif self.nextSalah[0]=="Fajr" and self.cDownVar == "1:00" and not self.announcementVoiced:
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
                 # elif self.nextSalah[0] == "Maghrib" and self.cDownVar == "5:00" and not self.announcementVoiced:
