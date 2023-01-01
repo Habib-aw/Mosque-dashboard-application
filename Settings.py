@@ -36,7 +36,7 @@ phonSwitchFont = 75
 minsBeforeSalah=1
 # -------------------------------Run class-------------------------------
 l = -0.028
-JummahTimes = "1:30 | 1:50"
+JummahTimes = "1:00 | 1:20"
 jummahXpos=0.5
 jummahYpos=0.9+l
 
