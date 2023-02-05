@@ -17,7 +17,9 @@ def playAnnouncement(A):
     # AudioPlayer("sounds/announcements/minutes/"+B[1]+".mp3").play(block=True)
 
 
-
+def playBeep():
+    AudioPlayer("sounds/infoBeep.mp3").play(block=True)
+    
 
 announceMsg1 ="Insha'Allah\nFrom tomorrow "
 announceMsg2 = " salah\nwill be at"
@@ -90,13 +92,13 @@ class Timer:
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
             if self.cDownVar=="9" and not self.counting and not self.announcementSet:
-                # if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"):
-                #     self.nextSalah[1]+=timedelta(minutes=14)
-                #     self.phoneSwitch.pack_forget()
-                #     self.countdown.pack_forget()
-                #     self.otherSalahs.config(text="Please pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
-                #     self.otherSalahs.pack(ipady=230)
-                #     self.root.config(bg="green")
+                if self.nextSalah[0] == "Maghrib" and ( datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): #datetime.now().strftime('%A')!="Sunday" and
+                    self.nextSalah[1]+=timedelta(minutes=1)
+                    self.phoneSwitch.pack_forget()
+                    self.countdown.pack_forget()
+                    self.otherSalahs.config(text="Please pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
+                    self.otherSalahs.pack(ipady=230)
+                    self.root.config(bg="green")
                 if self.announcements !=[]:
                     for i in range(len(self.announcements)):
                         if self.nextSalah[0] == self.salahNames[self.announcements[i][0]]:
@@ -127,6 +129,9 @@ class Timer:
                 #     self.phoneSwitch.pack_forget()
                 #     self.countdown.pack_forget()self
         elif toStrp(currentTime)>(self.nextSalah[1]+timedelta(minutes=minsBeforeSalah)):
+            if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"):#datetime.now().strftime('%A')!="Sunday" and 
+                Thread(target=playBeep).start()
+                
             self.getNextSalah()
             self.threadStarted=False
             self.phoneSwitch.pack_forget()
