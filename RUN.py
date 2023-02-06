@@ -53,6 +53,16 @@ title="Donations",
 content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",
 contentFont=60
 )
+# s3 = Slide(root,
+# title="",
+# content="",
+# contentFont=60
+# )
+# s4 = Slide(root,
+# title="",
+# content="",
+# contentFont=60
+# )
 
 # a = EidAdha(root,slideshow)
 # p = PostRamadan(root,slideshow)
