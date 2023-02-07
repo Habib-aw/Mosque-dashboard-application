@@ -100,7 +100,7 @@ class Timer:
                     self.nextSalah[1]+=timedelta(minutes=12)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
-                    self.otherSalahs.config(text="Please pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
+                    self.otherSalahs.config(text="Assalamu alaykum\nPlease pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
                     self.otherSalahs.pack(ipady=230)
                     self.root.config(bg="black")
                 if self.announcements !=[]:
