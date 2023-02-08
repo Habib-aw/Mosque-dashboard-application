@@ -91,18 +91,18 @@ class Timer:
                     self.countdown.config(text="\nPlease straighten the lines\nand\nfill in the gaps\n\n")
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
-            if self.cDownVar=="4:30" and not self.counting and not self.announcementSet:
+            if self.cDownVar=="4:30" and not self.counting and not self.announcementVoiced:
                 if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): 
                     Thread(target=playBeep).start()
-                    
+                    self.announcementVoiced = True
             if self.cDownVar=="9" and not self.counting and not self.announcementSet:
                 if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): 
                     self.nextSalah[1]+=timedelta(minutes=12)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
-                    self.otherSalahs.config(text="Assalamu alaykum\nPlease pray Sunnah prayer at home as Maktab is currently ongoing\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
+                    self.otherSalahs.config(text="Assalamu alaykum\n\nPlease pray Sunnah prayer at home as Maktab is currently ongoing\n\n JazakAllah khair",font=('Arial',80),wraplength=1500,bg="green")
                     self.otherSalahs.pack(ipady=230)
-                    self.root.config(bg="black")
+                    self.root.config(bg="green")
                 if self.announcements !=[]:
                     for i in range(len(self.announcements)):
                         if self.nextSalah[0] == self.salahNames[self.announcements[i][0]]:
