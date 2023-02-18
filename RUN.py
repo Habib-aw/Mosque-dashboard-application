@@ -15,18 +15,6 @@ from salahTimer import Timer
 from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA_logoLength,BMA_logoWidth,BMA_logoPositioningRelx,BMA_logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont
 from datetime import datetime,date
 
-def daysUntilRamadan():
-    currentDate = datetime.now()
-    d1 = date(currentDate.year,currentDate.month,currentDate.day)
-    d2 = date(day=22,month=3,year=2023)
-    daysTillRamadan = (d2-d1).days
-    dayPlural = "days"
-    if(daysTillRamadan==1):
-        dayPlural="day"
-    ramadanaCountdownMsg = str(daysTillRamadan)+" "+dayPlural+" until Ramadan"
-    if(daysTillRamadan<1):
-        ramadanaCountdownMsg = "Ramadan Mubarak"
-    return ramadanaCountdownMsg
 
 root = Tk()
 salahInfo= SalahInfo() ### updates times and receives time from file ###
@@ -66,7 +54,24 @@ title="Donations",
 content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",
 contentFont=60
 )
-s3 = Slide(root,title="",content=daysUntilRamadan(),contentFont=100)
+
+currentDate = datetime.now()
+d1 = date(currentDate.year,currentDate.month,currentDate.day)
+d2 = date(day=22,month=3,year=2023)
+daysTillRamadan = (d2-d1).days
+ramadanCountDownTitle= "Days until Ramadan"
+ramadanCountDownMsg = str(daysTillRamadan)
+ramadanCountDownContentFont =450
+ramadanCountDownTitleFont =100
+if(daysTillRamadan<1):
+    ramadanCountDownMsg = "Ramadan Mubarak"
+    ramadanCountDownTitle=""
+    ramadanCountDownContentFont =250
+    ramadanCountDownTitleFont =0
+
+s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont)
+
+
 # s3 = Slide(root,
 # title="",
 # content="",
