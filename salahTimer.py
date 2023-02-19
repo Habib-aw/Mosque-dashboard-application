@@ -92,7 +92,7 @@ class Timer:
                     self.countdown.pack()
                     self.nextSalah[1] += timedelta(minutes=4)
             if self.cDownVar=="9" and not self.counting and not self.announcementSet:
-                if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturda" and datetime.now().strftime('%A')!="Friday"): 
+                if self.nextSalah[0] == "Maghrib" and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): 
                     self.nextSalah[1]+=timedelta(minutes=12)
                     self.phoneSwitch.pack_forget()
                     self.countdown.pack_forget()
@@ -186,7 +186,7 @@ class Timer:
                 elif self.nextSalah[0]=="Fajr" and self.cDownVar == "1:00" and not self.announcementVoiced:
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
-                elif self.nextSalah[0] == "Maghrib" and self.cDownVar=="4:30" and not self.counting and not self.announcementVoiced and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturda" and datetime.now().strftime('%A')!="Friday"): 
+                elif self.nextSalah[0] == "Maghrib" and self.cDownVar=="4:30" and not self.counting and not self.announcementVoiced and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): 
                     self.announcementVoiced = True
                     Thread(target=playBeep).start()
                 # elif self.nextSalah[0] == "Maghrib" and self.cDownVar == "5:00" and not self.announcementVoiced:
