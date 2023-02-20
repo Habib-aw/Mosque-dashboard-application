@@ -59,10 +59,10 @@ currentDate = datetime.now()
 d1 = date(currentDate.year,currentDate.month,currentDate.day)
 d2 = date(day=22,month=3,year=2023)
 daysTillRamadan = (d2-d1).days
-ramadanCountDownTitle= "Days until Ramadan"
+ramadanCountDownTitle= "Days until Ramadan (estimate)"
 ramadanCountDownMsg = str(daysTillRamadan)
 ramadanCountDownContentFont =450
-ramadanCountDownTitleFont =100
+ramadanCountDownTitleFont =90
 if(daysTillRamadan<1):
     ramadanCountDownMsg = "Ramadan Mubarak"
     ramadanCountDownTitle=""
