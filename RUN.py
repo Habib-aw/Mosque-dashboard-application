@@ -59,17 +59,17 @@ currentDate = datetime.now()
 d1 = date(currentDate.year,currentDate.month,currentDate.day)
 d2 = date(day=22,month=3,year=2023)
 daysTillRamadan = (d2-d1).days
-ramadanCountDownTitle= "Days until Ramadan (estimate)"
+ramadanCountDownTitle= "Days until Ramadan"
 ramadanCountDownMsg = str(daysTillRamadan)
 ramadanCountDownContentFont =450
-ramadanCountDownTitleFont =90
+ramadanCountDownTitleFont =100
 if(daysTillRamadan<1):
     ramadanCountDownMsg = "Ramadan Mubarak"
     ramadanCountDownTitle=""
     ramadanCountDownContentFont =250
     ramadanCountDownTitleFont =0
 
-s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont)
+s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont,smallContent="Subject to moon sighting",smallContentFont=30)
 
 
 # s3 = Slide(root,

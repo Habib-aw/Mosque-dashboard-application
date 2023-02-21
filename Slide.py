@@ -2,11 +2,11 @@ from datetime import datetime,timedelta
 from tkinter import Frame,Label
 from Settings import background, foreground
 class Slide:
-	def __init__(self,root, content,contentFont=35,title=None,titleFont=55,whatTime=None,time=7,howLong=5,frame=None,paddingCtop=10,fg=foreground,bg=background,image=None,announce=False,wraplength=None):
+	def __init__(self,root, content,contentFont=35,title=None,titleFont=55,whatTime=None,time=7,howLong=5,frame=None,paddingCtop=10,fg=foreground,bg=background,image=None,announce=False,wraplength=None,smallContent=None,smallContentFont=None):
 		if frame !=None:
 			self.frame = frame
 		else:
-			self.createFrame(root,content,contentFont,title,titleFont,paddingCtop,fg,bg,image,wraplength)
+			self.createFrame(root,content,contentFont,title,titleFont,paddingCtop,fg,bg,image,wraplength,smallContent,smallContentFont)
 		if whatTime == None:
 			self.time = time
 		else:
@@ -17,7 +17,7 @@ class Slide:
 		self.frame.pack()
 	def forgetP(self):
 		self.frame.pack_forget()
-	def createFrame(self,root,content,contentFont,title,titleFont,paddingCtop,fg,bg,image,wraplength):
+	def createFrame(self,root,content,contentFont,title,titleFont,paddingCtop,fg,bg,image,wraplength,smallContent,smallContentFont):
 		self.frame =Frame(root,bg=bg,width=root.winfo_screenwidth())
 		self.inFrame = Frame(self.frame,bg=background)
 		self.inFrame.pack(side='bottom')
@@ -26,6 +26,9 @@ class Slide:
 				wraplength=root.winfo_screenwidth()-200
 			self.content = Label(self.inFrame,text=content,font=('Arial',contentFont),fg=fg,bg=bg,wraplength=wraplength)
 			self.content.pack(ipadx=1000,ipady=paddingCtop)
+			if smallContent != None:
+				self.smallContent = Label(self.inFrame,text=smallContent,font=('Arial',smallContentFont),fg=fg,bg=bg,wraplength=wraplength)
+				self.smallContent.pack()
 		elif content == None:
 			self.imageLabel = Label(self.inFrame,image=image)
 			self.imageLabel.pack()
