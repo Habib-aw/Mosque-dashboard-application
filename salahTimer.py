@@ -186,7 +186,7 @@ class Timer:
                 elif self.nextSalah[0]=="Fajr" and self.cDownVar == "1:00" and not self.announcementVoiced:
                     self.announcementVoiced=True
                     Thread(target=playAnnouncement,args=(A,)).start()
-                elif self.nextSalah[0] == "Maghrib" and self.cDownVar=="5:30" and not self.counting and not self.announcementVoiced and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): 
+                elif self.nextSalah[0] == "Maghrib" and self.cDownVar=="10:30" and not self.counting and not self.announcementVoiced and (datetime.now().strftime('%A')!="Sunday" and datetime.now().strftime('%A')!="Saturday" and datetime.now().strftime('%A')!="Friday"): 
                     self.announcementVoiced = True
                     Thread(target=playBeep).start()
                 # elif self.nextSalah[0] == "Maghrib" and self.cDownVar == "5:00" and not self.announcementVoiced:
