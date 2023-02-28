@@ -153,15 +153,15 @@ class Timer:
                 for i in range(len(self.changes)):
                     if toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
-                        # if self.changes[i][2] == 0: 
-                            #if self.ramadan.isRamadan():
-                            #   self.ramadan.setSuhoor()
-                            #  continue
+                        if self.changes[i][2] == 0: 
+                            if self.ramadan.isRamadan():
+                                self.ramadan.setSuhoor()
+                            continue # used to stop announcement from occurring
                         if self.changes[i][2] == 3:
-                            #if self.ramadan.isRamadan():
-                            #    self.ramadan.setIftaar()
-                            #    self.ramadan.changeDailyMessage()
-                            continue
+                            if self.ramadan.isRamadan():
+                                self.ramadan.setIftaar()
+                                self.ramadan.changeDailyMessage()
+                            continue # used to stop announcement from occurring
                         self.setAnnouncements(self.changes[i][2])
                 self.timesChanged= True
                 for i in range(5):

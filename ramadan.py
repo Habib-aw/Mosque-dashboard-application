@@ -23,14 +23,14 @@ class Ramadan:
         self.root = root
         DailyMessageImgWidthLocal=1500
         DailyMessageImgLengthLocal=770
-        self.banglaImage = ImageTk.PhotoImage(Image.open("images/bangla.jpeg").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
-        self.englishImage = ImageTk.PhotoImage(Image.open("images/noImgFound.png").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
+        self.banglaImage = ImageTk.PhotoImage(Image.open("images/Ramadan/bangla.jpeg").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
+        self.englishImage = ImageTk.PhotoImage(Image.open("images/Ramadan/noImgFound.png").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
         self.ramadanMessageE = Slide(self.root,None,image=self.englishImage,title="Daily message English")
         self.ramadanMessageB = Slide(self.root,None,image=self.banglaImage,title="Daily message Bangla")
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
         self.slideshow.add(self.fastTimesSlide)
         
-        if True:
+        if False:
             self.slideshow.addAll([self.ramadanMessageE,self.ramadanMessageB])
     def setFastTimes(self):
         self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
@@ -39,17 +39,17 @@ class Ramadan:
         if self.isRamadan():
             if len(self.messages) == 1:
                 try:
-                    self.Image = ImageTk.PhotoImage(Image.open("images/"+self.messages[0]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+                    self.Image = ImageTk.PhotoImage(Image.open("images/Ramadan/"+self.messages[0]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
                 except:
-                    self.Image = ImageTk.PhotoImage(Image.open("images/noImgFound.png").resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+                    self.Image = ImageTk.PhotoImage(Image.open("images/Ramadan/noImgFound.png").resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
 
     def changeDailyMessage(self):
         try:
-            self.newImage = ImageTk.PhotoImage(Image.open("images/"+self.nextDayFasts[2]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+            self.newImage = ImageTk.PhotoImage(Image.open("images/Ramadan/"+self.nextDayFasts[2]).resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
             if self.nextDayFasts[2] !=None:
                 self.ramadanMessage.imageLabel.config(image=self.newImage)
         except:
-            self.newImage = ImageTk.PhotoImage(Image.open("images/noImgFound.png").resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
+            self.newImage = ImageTk.PhotoImage(Image.open("images/Ramadan/noImgFound.png").resize((DailyMessageImgWidth,DailyMessageImgLength),Image.ANTIALIAS))
 
 
     def setNextDayFasts(self):
@@ -71,13 +71,13 @@ class Ramadan:
     def isRamadan(self):
         if self.lines == []:
             return False
-        return toStrpDate(self.RamadanTimes[0][0])  <= toStrpDate(datetime.now().strftime("%d-%b-%y")) and toStrpDate(self.RamadanTimes[len(self.RamadanTimes)-1][0])>=toStrpDate(datetime.now().strftime("%d-%b-%y"))
+        return toStrpDate(self.RamadanTimes[0][0])  <= toStrpDate(datetime.now().strftime("%d-%b-%y"))
 class PostRamadan:
     def __init__(self,root,slideshow) -> None:
         multB=1
         multE=0.9
-        self.postB = ImageTk.PhotoImage(Image.open("images/post-ramadan-bengali.jpeg").resize((round(1024*multB),round(768*multB)),Image.ANTIALIAS))
-        self.postE= ImageTk.PhotoImage(Image.open("images/post-ramadan-english.jpeg").resize((round(1024*multE),round(855*multE)),Image.ANTIALIAS))
+        self.postB = ImageTk.PhotoImage(Image.open("images/Ramadan/post-ramadan-bengali.jpeg").resize((round(1024*multB),round(768*multB)),Image.ANTIALIAS))
+        self.postE= ImageTk.PhotoImage(Image.open("images/Ramadan/post-ramadan-english.jpeg").resize((round(1024*multE),round(855*multE)),Image.ANTIALIAS))
         post_R_E = Slide(root,"""1. Keep fasting on 6 days in Shawwal;
 2. Pray all salah in Jama'ah;
 3. Extra nafl salah every day.
@@ -97,7 +97,7 @@ class PostRamadan:
         slideshow.addAll([post_R_E,post_R_B])
 class EidAdha:
     def __init__(self,root,slideshow) -> None:
-        self.post = ImageTk.PhotoImage(Image.open("images/arafat-adha.png").resize((1918,870),Image.ANTIALIAS))
+        self.post = ImageTk.PhotoImage(Image.open("images/Ramadan/arafat-adha.png").resize((1918,870),Image.ANTIALIAS))
         arafat = Slide(root,None,image=self.post,title="",time=10)
         slideshow.add(arafat)
 # # initialy for daily message
