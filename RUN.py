@@ -55,21 +55,21 @@ content="Please donate to the masjid using the charity box or card machine near 
 contentFont=60
 )
 
-currentDate = datetime.now()
-d1 = date(currentDate.year,currentDate.month,currentDate.day)
-d2 = date(day=22,month=3,year=2023)
-daysTillRamadan = (d2-d1).days
-ramadanCountDownTitle= "Days until Ramadan"
-ramadanCountDownMsg = str(daysTillRamadan)
-ramadanCountDownContentFont =450
-ramadanCountDownTitleFont =100
-if(daysTillRamadan<1):
-    ramadanCountDownMsg = "Ramadan Mubarak"
-    ramadanCountDownTitle=""
-    ramadanCountDownContentFont =250
-    ramadanCountDownTitleFont =0
+# currentDate = datetime.now()
+# d1 = date(currentDate.year,currentDate.month,currentDate.day)
+# d2 = date(day=22,month=3,year=2023)
+# daysTillRamadan = (d2-d1).days
+# ramadanCountDownTitle= "Days until Ramadan"
+# ramadanCountDownMsg = str(daysTillRamadan)
+# ramadanCountDownContentFont =450
+# ramadanCountDownTitleFont =100
+# if(daysTillRamadan<1):
+#     ramadanCountDownMsg = "Ramadan Mubarak"
+#     ramadanCountDownTitle=""
+#     ramadanCountDownContentFont =250
+#     ramadanCountDownTitleFont =0
 
-s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont,smallContent="Subject to moon sighting",smallContentFont=30)
+# s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont,smallContent="Subject to moon sighting",smallContentFont=30)
 
 
 # s3 = Slide(root,
@@ -122,7 +122,7 @@ r = Ramadan(slideshow,root)
 # )
 
 s1.packSlide()
-slideshow.addAll([s1,s2,s3])
+slideshow.addAll([s1,s2])
 
 t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,r)
 slideshow.redoTimes()

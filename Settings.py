@@ -1,6 +1,6 @@
 #-------------------------------All-------------------------------
 fontStyle =  "Arial"
-background = '#00008B' #'#000023'
+background = '#000037' #'#000023'
 foreground = 'white' #'#e8d0bc'
 #-------------------------------SalahContainer class-------------------------------
 salahContainerFont = 93
