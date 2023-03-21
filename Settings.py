@@ -1,4 +1,6 @@
+from datetime import datetime,timedelta
 #-------------------------------All-------------------------------
+
 fontStyle =  "Arial"
 background = '#000037' #'#000023'
 foreground = 'white' #'#e8d0bc'
@@ -36,7 +38,20 @@ phonSwitchFont = 75
 minsBeforeSalah=1
 # -------------------------------Run class-------------------------------
 l = -0.028
+def last_day(d, day_name):
+    days = ['sunday','monday','tuesday','wednesday',
+                        'thursday','friday','saturday']
+    target_day = days.index(day_name.lower())
+    delta_day = target_day - d.isoweekday()
+    if delta_day >= 0: delta_day -= 7 # go back 7 days
+    return d + timedelta(days=delta_day)
+marchLastSunday = last_day(datetime(datetime.now().year,4,1),'sunday')
+octoberLastSunday = last_day(datetime(datetime.now().year,11,1),'sunday')
 JummahTimes = "1:00 | 1:20"
+
+if datetime.now() >= marchLastSunday and datetime.now()<octoberLastSunday: # summer time jummah times go here
+    JummahTimes = "1:30 | 1:50"
+
 jummahXpos=0.5
 jummahYpos=0.9+l
 
