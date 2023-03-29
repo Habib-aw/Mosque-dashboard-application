@@ -40,7 +40,7 @@ salahLabels = [fajr,zuhr,asr,maghrib,isha]
 Label(salahContinerframe,text="Jummah",font=(fontStyle,salahTitles),bg=background,fg=foreground).place(relx=jummahTitleXpos,rely=jummahTitleYpos,anchor='center')
 Label(salahContinerframe,text=JummahTimes,font=(fontStyle,salahContainerFont),bg=background,fg=foreground).place(relx=jummahXpos,rely=jummahYpos,anchor='center')
 baitulMamurLogo = Image.open("logo.png")
-logo_pic = baitulMamurLogo.resize((BMA_logoWidth,BMA_logoLength),Image.ANTIALIAS)
+logo_pic = baitulMamurLogo.resize((BMA_logoWidth,BMA_logoLength),Image.Resampling.LANCZOS)
 new_logo = ImageTk.PhotoImage(logo_pic)
 Label(salahContinerframe,image=new_logo).place(relx=BMA_logoPositioningRelx,rely=BMA_logoPositioningRely,anchor='center')
 
@@ -50,11 +50,19 @@ frame=salahContinerframe,
 time=10
 )
 
+spaces = "    "
+qrCode = ImageTk.PhotoImage(Image.open("images/BMA donate qr code.png").resize((890,890),Image.Resampling.LANCZOS))
 s2 = Slide(root,
-title="Donations",
-content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",
-contentFont=60
+title="",
+content=spaces+"Please Donate by\n"+spaces+"following the QR code\n\n\n"+spaces+"Or donate via the\n"+spaces+"charity box/card machine \n"+spaces+"at the entrance/exit",
+contentFont=60,
+image=qrCode
 )
+# s2 = Slide(root,
+# title="Donations",
+# content="Please donate to the masjid using the charity box or card machine near the entrance/exit\nor\nBy using online transfer\nOrganisation name: Baitul Mamur Academy\nAcc no. 31643290\nSort code: 40-01-18",
+# contentFont=60
+# )
 
 hijri = Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri()
 
@@ -63,6 +71,8 @@ if hijri.month_name() =="Ramadhan":
     ramadanDaySlide = Slide(root,title="Ramadan Day",content=ramadanDay,contentFont=450,titleFont=100)
     if ramadanDay >25:
         eidJamaahSlide = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00 AM\n\n2nd Jama'ah: 8:30 AM\n\n3rd Jama'ah: 9:30 AM",contentFont=100,bg='black')
+    if ramadanDay <= 12 and hijri.year == 1444:
+        gatheringSlide = Slide(root, title="Iftaar gathering this monday",titleFont=100,content="On monday 3rd of April (12th Ramadan),\nBaitul Mamur Academy would like to invite you to an iftaar gathering,\nPlease come and bring your friends & family to this barakah filled event\nWe look forward to seeing you all\nInsha'Allah",contentFont=65)
 # currentDate = datetime.now()
 # d1 = date(currentDate.year,currentDate.month,currentDate.day)
 # d2 = date(day=22,month=3,year=2023)
@@ -131,6 +141,11 @@ r = Ramadan(slideshow,root)
 
 s1.packSlide()
 slideshow.addAll([s1,s2])
+
+try:
+    slideshow.add(gatheringSlide)
+except:
+    pass
 try:
     slideshow.add(ramadanDaySlide)
 except:
