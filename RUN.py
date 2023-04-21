@@ -88,7 +88,8 @@ if hijri.month_name() =="Ramadhan":
 #     ramadanCountDownTitleFont =0
 # s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont,smallContent="Subject to moon sighting",smallContentFont=30)
 
-
+if hijri.month_name()=="Shawwal" and hijri.day ==1:
+    eidMubarakSlide = Slide(root,title="",content="Eid Mubarak",contentFont=250,smallContent="TaqabbalAllahu Minna Wa Minkum",smallContentFont=50)
 
 # s3 = Slide(root,
 # title="",
@@ -155,7 +156,10 @@ try:
     slideshow.add(eidJamaahSlide)
 except:
     pass
-
+try:
+    slideshow.add(eidMubarakSlide)
+except:
+    pass
 try:
     t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,r)
 except:
