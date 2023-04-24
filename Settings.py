@@ -1,9 +1,12 @@
 from datetime import datetime,timedelta
+from hijri_converter import Gregorian
 #-------------------------------All-------------------------------
 
 fontStyle =  "Arial"
 background = '#000037' #'#000023'
 foreground = 'white' #'#e8d0bc'
+isRamadan = Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri() == ""
+
 #-------------------------------SalahContainer class-------------------------------
 salahContainerFont = 93
 salahTitles = 55

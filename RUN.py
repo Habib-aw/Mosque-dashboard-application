@@ -12,7 +12,7 @@ from Footer import *
 from Slideshow import *
 from salahTimer import Timer
 # Other
-from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA_logoLength,BMA_logoWidth,BMA_logoPositioningRelx,BMA_logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont
+from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA_logoLength,BMA_logoWidth,BMA_logoPositioningRelx,BMA_logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont,isRamadan
 from datetime import datetime,date
 from hijri_converter import Gregorian
 
@@ -103,7 +103,8 @@ if hijri.month_name() =="Ramadhan":
 
 # a = EidAdha(root,slideshow)
 # p = PostRamadan(root,slideshow)
-r = Ramadan(slideshow,root)
+if isRamadan:
+    r = Ramadan(slideshow,root)
 # s3 = Slide(root,
 # title="'Virtues Of Dhul-Hijjah'",
 # content="""There are no days in the year more beloved to Allah swt than the first ten days of Dhul-Hijjah and the last ten nights of Ramadan, as they combine acts of worship in a way unlike any other time. The Prophet Pbuh said, 'There is no deed that is better in the sight of Allah or more greatly rewarded than a good deed done in the (first) ten days of Al-Adha'. It was asked, 'Not even Jihad for the sake of Allah?' The Prophet Pbuh replied, 'Not even Jihad for the sake of Allah, unless a man goes out himself for Jihad taking his wealth with him and does not come back with anything.' 
@@ -155,8 +156,10 @@ try:
 except:
     pass
 
-
-t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,r)
+try:
+    t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,r)
+except:
+    t = Timer(root,salahInfo.salahTimesObj,[f,slideshow],changes,announcements,timeChanges,salahLabels,None)
 slideshow.redoTimes()
 root.config(bg=background)
 root.attributes('-fullscreen',True)

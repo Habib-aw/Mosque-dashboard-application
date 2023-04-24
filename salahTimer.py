@@ -1,7 +1,7 @@
 from datetime import timedelta,datetime,date
 from tkinter import Label
 import schedule
-from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont,minsBeforeSalah
+from Settings import background,foreground,fontStyle,salahIn2Font,salahIn2PaddingTop,salahIn2SpaceBetween,announcementContentFont,salahIn2Bg,phonSwitchFont,minsBeforeSalah,isRamadan
 from Slide import Slide
 from audioplayer import AudioPlayer
 from threading import Thread
@@ -147,11 +147,11 @@ class Timer:
                     if toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
                         if self.changes[i][2] == 0: 
-                            if self.ramadan.isRamadan():
+                            if isRamadan:
                                 self.ramadan.setSuhoor()
-                            continue # used to stop announcement from occurring
+                                continue # used to stop announcement from occurring
                         if self.changes[i][2] == 3:
-                            if self.ramadan.isRamadan():
+                            if isRamadan:
                                 self.ramadan.setIftaar()
                                 self.ramadan.changeDailyMessage()
                             continue # used to stop announcement from occurring

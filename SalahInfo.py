@@ -1,6 +1,6 @@
 from datetime import datetime,timedelta
 import re
-from Settings import minsBeforeSalah
+from Settings import minsBeforeSalah,isRamadan
 def toStrpDate(st):
     return datetime.strptime(st,"%d-%b-%y")
 class SalahInfo:
@@ -47,7 +47,7 @@ class SalahInfo:
 			for i in range(5):
 				if self.salahTimes[i][1] !=tmrroSalahs[i]:
 					changes.append([self.salahTimesObj[i][1],tmrroSalahs[i],i])
-				if i == 0:###Change after ramadan
+				if isRamadan and i == 0:###Change after ramadan
 					continue
 				if  i!=3:
 					if self.salahTimes[i][1] !=tmrroSalahs[i]:
