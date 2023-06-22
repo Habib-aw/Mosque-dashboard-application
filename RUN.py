@@ -66,6 +66,9 @@ image=qrCode
 
 hijri = Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri()
 
+if hijri.month_name() =="Dhu al-Hijjah":
+    if hijri.day <10 and hijri.day>3:
+        eidJamaahSlide = Slide(root,title="EID JAMA'AH",content="1st Jama'ah: 7:00 AM\n\n2nd Jama'ah: 8:30 AM\n\n3rd Jama'ah: 10:00 AM",contentFont=100,bg='black')
 if hijri.month_name() =="Ramadhan":
     ramadanDay = hijri.day
     ramadanDaySlide = Slide(root,title="Ramadan Day",content=ramadanDay,contentFont=450,titleFont=100)
@@ -88,7 +91,7 @@ if hijri.month_name() =="Ramadhan":
 #     ramadanCountDownTitleFont =0
 # s3 = Slide(root,title=ramadanCountDownTitle,content=ramadanCountDownMsg,contentFont=ramadanCountDownContentFont,titleFont=ramadanCountDownTitleFont,smallContent="Subject to moon sighting",smallContentFont=30)
 
-if hijri.month_name()=="Shawwal" and hijri.day ==1:
+if (hijri.month_name()=="Shawwal" and hijri.day ==1) or (hijri.month_name()=="Dhu al-Hijjah" and hijri.day==10):
     eidMubarakSlide = Slide(root,title="",content="Eid Mubarak",contentFont=250,smallContent="TaqabbalAllahu Minna Wa Minkum",smallContentFont=50)
 
 # s3 = Slide(root,
