@@ -15,6 +15,7 @@ from salahTimer import Timer
 from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA_logoLength,BMA_logoWidth,BMA_logoPositioningRelx,BMA_logoPositioningRely,x2,x1,x,y1,y,jummahXpos,jummahYpos,jummahTitleXpos,jummahTitleYpos,salahContainerFont,isRamadan
 from datetime import datetime,date
 from hijri_converter import Gregorian
+import json
 
 
 root = Tk()
@@ -146,7 +147,17 @@ if isRamadan:
 
 s1.packSlide()
 slideshow.addAll([s1,s2])
-
+f = open('db.json')
+data = json.load(f)
+normalSlides = data['slides']['normalSlide']
+f.close()
+if(not (isinstance(normalSlides,str))):
+    for i in range(len(normalSlides)):
+        slideshow.add(Slide(root,
+    title=normalSlides[i]['title'],
+    content=normalSlides[i]['text'],
+    contentFont=60
+    ))
 try:
     slideshow.add(gatheringSlide)
 except:

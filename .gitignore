@@ -4,3 +4,5 @@ start-times.json
 times.json
 chromedriver.exe
 jamaah-times.json
+serviceAccountKey.json
+db.json
