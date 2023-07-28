@@ -147,17 +147,20 @@ if isRamadan:
 
 s1.packSlide()
 slideshow.addAll([s1,s2])
-f = open('db.json')
-data = json.load(f)
-normalSlides = data['slides']['normalSlide']
-f.close()
-if(not (isinstance(normalSlides,str))):
-    for i in range(len(normalSlides)):
-        slideshow.add(Slide(root,
-    title=normalSlides[i]['title'],
-    content=normalSlides[i]['text'],
-    contentFont=60
-    ))
+try:
+    f = open('db.json')
+    data = json.load(f)
+    normalSlides = data['slides']['normalSlide']
+    f.close()
+    if(not (isinstance(normalSlides,str))):
+        for i in range(len(normalSlides)):
+            slideshow.add(Slide(root,
+        title=normalSlides[i]['title'],
+        content=normalSlides[i]['text'],
+        contentFont=60
+        ))
+except:
+    pass
 try:
     slideshow.add(gatheringSlide)
 except:
