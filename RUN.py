@@ -16,8 +16,19 @@ from Settings import background,foreground,salahTitles,fontStyle,JummahTimes,BMA
 from datetime import datetime,date
 from hijri_converter import Gregorian
 import json
-
-
+try:
+    db = open('db.json')
+    data = json.load(db)
+    db.close()
+    dateAndTime = data["dateAndTime"]
+    time = dateAndTime['time']
+    gDate = dateAndTime['gregorianDate']
+    hDate = dateAndTime['hijriDate']
+    announcementsData = data['announcements']
+    countdown = data['countdown']
+    salahCountdown = countdown['salah']
+except:
+    pass
 root = Tk()
 salahInfo= SalahInfo() ### updates times and receives time from file ###
 # bot = Bot() ### checks times in website match that of file ####
@@ -147,20 +158,60 @@ if isRamadan:
 
 s1.packSlide()
 slideshow.addAll([s1,s2])
+normalSlides = []
+imageSlides = []
+
 try:
-    f = open('db.json')
-    data = json.load(f)
-    normalSlides = data['slides']['normalSlide']
-    f.close()
-    if(not (isinstance(normalSlides,str))):
-        for i in range(len(normalSlides)):
-            slideshow.add(Slide(root,
-        title=normalSlides[i]['title'],
-        content=normalSlides[i]['text'],
-        contentFont=60
-        ))
-except:
+    slides = data['slides']
+    basicSlides = slides['basic']
+    nSlides = basicSlides['normalSlide']
+    iSlides = basicSlides['imageSlide']
+    if(not (isinstance(nSlides,str))):
+        for i in range(len(nSlides)):
+            normalSlides.append([Slide(root,
+        title=nSlides[i]['title'],
+        titleFont=45+(nSlides[i]['font']['textFactor']*5),
+        content=nSlides[i]['text'],
+        contentFont=35+(nSlides[i]['font']['textFactor']*5),
+        bg=nSlides[i]['colour']['slide'],
+        time=nSlides[i]['displayTime'],
+        fg=nSlides[i]['colour']['text'],
+        titleFg=nSlides[i]['colour']['title'],
+        ),nSlides[i]['order']])
+    if(not (isinstance(iSlides,str))):
+        for i in range(len(iSlides)):
+            maxImgWidth=1900
+            maxImgHeight=870
+            if iSlides[i]['title'] !="":
+                maxImgHeight=780
+            try:
+                openedImage = Image.open("images/downloadedImages/"+iSlides[i]['imageName'])
+            except:
+                openedImage = Image.open("images/noImgFound.png")
+            width, height = openedImage.size
+            imgWidth = round((width/height)*maxImgHeight)
+            imgHeight = maxImgHeight
+            if imgWidth>maxImgWidth:
+                imgWidth=maxImgWidth
+                imgHeight=round((height/width)*maxImgWidth)
+            image = ImageTk.PhotoImage(openedImage.resize((imgWidth,imgHeight),Image.Resampling.LANCZOS))
+            imageSlides.append([Slide(root,None,
+        image=image,
+        title=iSlides[i]['title'],
+        bg=iSlides[i]['colour']['slide'],
+        time=iSlides[i]['displayTime'],
+        titleFont=45+(iSlides[i]['font']['titleFactor']*5),
+        titleFg=iSlides[i]['colour']['title']),
+        iSlides[i]['order']])
+except Exception as e:
+    print("error",e)
     pass
+allSlides = [None for _ in range(len(normalSlides)+len(imageSlides))]
+for i in range(len(normalSlides)):
+    allSlides[normalSlides[i][1]] = normalSlides[i][0]
+for i in range(len(imageSlides)):
+    allSlides[imageSlides[i][1]] = imageSlides[i][0]
+slideshow.addAll(allSlides)
 try:
     slideshow.add(gatheringSlide)
 except:
