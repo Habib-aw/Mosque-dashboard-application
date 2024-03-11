@@ -49,7 +49,7 @@ class SalahInfo:
 					changes.append([self.salahTimesObj[i][1],tmrroSalahs[i],i])
 				if isRamadan and i == 0:###Change after ramadan
 					continue
-				if  i!=3:
+				if  i!=3 and i!=0:
 					if self.salahTimes[i][1] !=tmrroSalahs[i]:
 						announcements.append([i,tmrroSalahs[i]])
 		return [announcements,changes]

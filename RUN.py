@@ -119,8 +119,8 @@ if (hijri.month_name()=="Shawwal" and hijri.day ==1) or (hijri.month_name()=="Dh
 
 # a = EidAdha(root,slideshow)
 # p = PostRamadan(root,slideshow)
-if isRamadan:
-    r = Ramadan(slideshow,root)
+# if isRamadan:
+r = Ramadan(slideshow,root)
 # s3 = Slide(root,
 # title="'Virtues Of Dhul-Hijjah'",
 # content="""There are no days in the year more beloved to Allah swt than the first ten days of Dhul-Hijjah and the last ten nights of Ramadan, as they combine acts of worship in a way unlike any other time. The Prophet Pbuh said, 'There is no deed that is better in the sight of Allah or more greatly rewarded than a good deed done in the (first) ten days of Al-Adha'. It was asked, 'Not even Jihad for the sake of Allah?' The Prophet Pbuh replied, 'Not even Jihad for the sake of Allah, unless a man goes out himself for Jihad taking his wealth with him and does not come back with anything.' 
@@ -157,7 +157,7 @@ if isRamadan:
 # )
 
 s1.packSlide()
-slideshow.addAll([s1,s2])
+slideshow.addAll([s1])
 normalSlides = []
 imageSlides = []
 

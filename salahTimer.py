@@ -154,15 +154,16 @@ class Timer:
                     if toStrp(currentTime) > self.changes[i][0]:
                         self.salahLabels[self.changes[i][2]].label.config(text=self.changes[i][1])
                         if self.changes[i][2] == 0: 
-                            if isRamadan:
-                                self.ramadan.setSuhoor()
-                                continue # used to stop announcement from occurring
-                        if self.changes[i][2] == 3:
-                            if isRamadan:
-                                self.ramadan.setIftaar()
-                                self.ramadan.changeDailyMessage()
+                            # if self.ramadan.isRamadan():
+                            self.ramadan.setSuhoor()
                             continue # used to stop announcement from occurring
-                        self.setAnnouncements(self.changes[i][2])
+                        elif self.changes[i][2] == 3:
+                            # if self.ramadan.isRamadan():
+                            self.ramadan.setIftaar()
+                            # self.ramadan.changeDailyMessage()
+                            continue # used to stop announcement from occurring
+                        else:
+                            self.setAnnouncements(self.changes[i][2])
                 self.timesChanged= True
                 for i in range(5):
                         if toStrp(currentTime) > self.salahObj[i][1]:
@@ -190,6 +191,7 @@ class Timer:
                 #     self.announcementVoiced=True
                 #     Thread(target=playAnnouncement,args=(A,)).start()
     def setAnnouncements(self,whichSalah=-1):
+        print(self.announcements)
         if self.announcements != []:
             announcementscontent = "Insha'Allah\n"
             for i in range(len(self.announcements)):

@@ -2,7 +2,7 @@ from Slide import Slide
 from PIL import ImageTk,Image
 from datetime import datetime
 from Settings import SuhoorIftaarPaddingTop,SuhoorIftaarSpaceBetween,SuhoorIftaarTimeFont,DailyMessageImgLength,DailyMessageImgWidth
-
+from hijri_converter import Gregorian
 def toStrpDate(st):
     return datetime.strptime(st,"%d-%b-%y")
 
@@ -17,16 +17,16 @@ class Ramadan:
         self.iftaar = "Iftaar Starts: "+self.RamadanTimes[0][2]
         self.fastTimes = self.fastTimes = self.suhoor + SuhoorIftaarSpaceBetween + self.iftaar
         self.nextDayFasts = [None for _ in range(len(self.RamadanTimes)-1)];self.setNextDayFasts()
-        self.Image= None;self.getDailyRamadanMessage()
+        # self.Image= None;self.getDailyRamadanMessage()
         # Holds reference to other objects 
         self.slideshow = slideshow
         self.root = root
         DailyMessageImgWidthLocal=1500
         DailyMessageImgLengthLocal=770
-        self.banglaImage = ImageTk.PhotoImage(Image.open("images/Ramadan/bangla.jpeg").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
-        self.englishImage = ImageTk.PhotoImage(Image.open("images/Ramadan/noImgFound.png").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
-        self.ramadanMessageE = Slide(self.root,None,image=self.englishImage,title="Daily message English")
-        self.ramadanMessageB = Slide(self.root,None,image=self.banglaImage,title="Daily message Bangla")
+        # self.banglaImage = ImageTk.PhotoImage(Image.open("images/Ramadan/bangla.jpeg").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
+        # self.englishImage = ImageTk.PhotoImage(Image.open("images/Ramadan/noImgFound.png").resize((DailyMessageImgWidthLocal,DailyMessageImgLengthLocal),Image.ANTIALIAS))
+        # self.ramadanMessageE = Slide(self.root,None,image=self.englishImage,title="Daily message English")
+        # self.ramadanMessageB = Slide(self.root,None,image=self.banglaImage,title="Daily message Bangla")
         self.fastTimesSlide = Slide(self.root,self.fastTimes,contentFont=SuhoorIftaarTimeFont,paddingCtop=SuhoorIftaarPaddingTop)
         self.slideshow.add(self.fastTimesSlide)
         
@@ -69,9 +69,7 @@ class Ramadan:
                 open(self.filename, 'w',encoding="utf-8").writelines(self.lines[1:])
                 self.lines= open(self.filename, "r",encoding="utf-8").readlines()
     def isRamadan(self):
-        if self.lines == []:
-            return False
-        return toStrpDate(self.RamadanTimes[0][0])  <= toStrpDate(datetime.now().strftime("%d-%b-%y"))
+        return Gregorian(int(datetime.now().year), datetime.now().month, datetime.now().day).to_hijri() == "Ramadhan"
 class PostRamadan:
     def __init__(self,root,slideshow) -> None:
         multB=1
